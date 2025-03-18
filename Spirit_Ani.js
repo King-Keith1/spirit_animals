@@ -3,9 +3,9 @@ document.addEventListener("DOMContentLoaded", function () {
         { text: "What is your name?", type: "text", key: "name" },
         { text: "Is your name based on the Bible?", type: "boolean", key: "nameOrigin" },
         { text: "What is your birthdate?", type: "date", key: "birthDate" },
-        { text: "What is your birth year?", type: "number", key: "birthYear" },
-        { text: "Are you a night or day person?", type: "choice", key: "timeOfDay", options: ["Night", "Day"] },
-        { text: "Would you choose to breathe underwater, fly, or remain as you are?", type: "choice", key: "abilityChoice", options: ["Breathe underwater", "Fly", "Remain as I am"] },
+        { text: "How do you handle pressure or stress?", type: "choice", key: "stressHandling", options: ["Stay calm and analyze", "Act quickly to resolve it", "Take a break and come back", "Get overwhelmed but push through"] },
+        { text: "Are you a night or day person?", type: "choice", key: "timeOfDay", options: ["Night", "Day", "Both, just depends on the situation"] },
+        { text: "Which best describes how you make decisions?", type: "choice", key: "decisionMaking", options: ["Logically, based on facts", "Emotionally, based on feelings", "Intuitively, gut feeling", "I struggle with decisions"] },
         { text: "Would you rather be a ruler of a nation or be free, not shackled to anything?", type: "choice", key: "rulerOrFree", options: ["Ruler", "Free"] },
         { text: "Would you rather be a Carnivore, Herbivore, or Omnivore?", type: "choice", key: "diet", options: ["Carnivore", "Herbivore", "Omnivore"] },
         { text: "What kind of environment do you thrive in?", type: "choice", key: "environment", options: ["Forest", "Desert", "Mountains", "City", "Ocean", "Plains"] },
@@ -16,18 +16,124 @@ document.addEventListener("DOMContentLoaded", function () {
         { text: "If you had to rely on just one of your senses, what would it be?", type: "choice", key: "sense", options: ["Hearing", "Smell", "Eyesight", "Sixth sense"] },
         { text: "When you take on a task, you like to get it done...?", type: "choice", key: "taskApproach", options: ["Your way", "In a team", "As soon as possible"] },
         { text: "Faced with an unusual situation...", type: "choice", key: "unusualSituation", options: ["React immediately", "Think before acting", "Get around the problem"] },
-        { text: "Faced with important choices in life...", type: "choice", key: "lifeChoices", options: ["Don't like to choose", "Call loved ones", "Decide on my own"] },
+        { text: "How do you react to failure?", type: "choice", key: "failureReaction", options: ["Learn from it and move on", "Try again immediately", "Take time to recover", "Avoid risks to prevent failure"] },
         { text: "People are often surprised by your...", type: "choice", key: "firstImpression", options: ["Charisma", "Mind", "Speed", "Curiosity", "I don't know"] },
         { text: "Your seductive trump card?", type: "choice", key: "seduction", options: ["Confidence", "Mystery", "Intelligence", "Determination", "I don't know"] },
-        { text: "Your ideal vacation?", type: "choice", key: "vacation", options: ["Relax with family", "Beach parties", "Backpacking and sightseeing"] },
+        { text: "What does your ideal vacation look like?", type: "choice", key: "vacation", options: ["Relaxing in nature or at home", "Exciting adventures and exploring", "Socializing at parties and events"] },
         { text: "Which describes you more?", type: "choice", key: "personality", options: ["Sensible", "Peaceful", "Curious", "Courageous", "Creative"] },
         { text: "Most important objective?", type: "choice", key: "objective", options: ["Fame", "Wealth", "Love", "Peace"] },
         { text: "Your ambition?", type: "choice", key: "ambition", options: ["Fulfill dreams", "Enjoy life", "Be a leader in major projects"] },
         { text: "Which major animal do you identify with?", type: "choice", key: "animalType", options: ["Bird", "Mammal", "Reptile", "Fish", "Amphibian"] },
-        { text: "Which superpower would you choose?", type: "choice", key: "superpower", options: ["Super strength", "Super speed", "Flight", "X-ray vision"] },
-        { text: "Which element do you feel connected to?", type: "choice", key: "element", options: ["Fire", "Water", "Wind", "Earth"] }
+        { text: "Which superpower would you choose?", type: "choice", key: "superpower", options: ["Super strength", "Super speed", "Flight", "X-ray vision", "Breathe underwater"] },
+        { text: "Which element do you feel connected to?", type: "choice", key: "element", options: ["Fire", "Water", "Wind", "Earth"] },
+        { text: "How do you handle conflict?", type: "choice", key: "conflictHandling", options: ["Avoid it", "Face it head-on", "Try to mediate", "Stay silent but hold a grudge"] },
+        { text: "How do you handle criticism?", type: "choice", key: "criticismHandling", options: ["Reflect and learn from it", "Defend yourself and explain", "Feel hurt but move on", "Ignore it entirely"] },
+        { text: "How do you prefer to spend your free time?", type: "choice", key: "freeTime", options: ["Exploring new hobbies", "Relaxing and recharging", "Spending time with loved ones", "Working on personal projects"] },
+        { text: "What motivates you to keep going when things get tough?", type: "choice", key: "motivationSource", options: ["Your long-term goals", "Support from loved ones", "The desire to prove yourself", "The belief that things will get better"] }
     ];
-
+        let currentQuestionIndex = 0;
+        let userResponses = {};
+        
+        const questionText = document.getElementById("question-text");
+        const answerOptions = document.getElementById("answer-options");
+        const nextBtn = document.getElementById("next-btn");
+    
+        function loadQuestion() {
+            const question = questions[currentQuestionIndex];
+            questionText.textContent = question.text;
+            answerOptions.innerHTML = "";
+            nextBtn.disabled = true;
+    
+            if (question.type === "text" || question.type === "date" || question.type === "number") {
+                const input = document.createElement("input");
+                input.type = question.type;
+                input.addEventListener("input", () => {
+                    userResponses[question.key] = input.value;
+                    nextBtn.disabled = input.value === "";
+                });
+                answerOptions.appendChild(input);
+            } else if (question.type === "boolean") {
+                ["Yes", "No"].forEach(choice => {
+                    const button = document.createElement("button");
+                    button.textContent = choice;
+                    button.addEventListener("click", () => {
+                        userResponses[question.key] = choice === "Yes";
+                        nextBtn.disabled = false;
+                    });
+                    answerOptions.appendChild(button);
+                });
+            } else if (question.type === "choice") {
+                question.options.forEach(choice => {
+                    const button = document.createElement("button");
+                    button.textContent = choice;
+                    button.addEventListener("click", () => {
+                        userResponses[question.key] = choice;
+                        nextBtn.disabled = false;
+                    });
+                    answerOptions.appendChild(button);
+                });
+            }
+        }
+    
+        nextBtn.addEventListener("click", () => {
+            currentQuestionIndex++;
+            if (currentQuestionIndex < questions.length) {
+                loadQuestion();
+            } else {
+                console.log("Quiz complete!", userResponses);
+                
+                // Get zodiac sign and generation before determining spirit animal
+                userResponses["zodiac"] = getZodiacAndGeneration(userResponses["birthDate"]).zodiac;
+                userResponses["generation"] = getZodiacAndGeneration(userResponses["birthDate"]).generation;
+                
+                determineSpiritAnimal(); // Call this function to process results
+            }
+        });
+    
+        function getZodiacAndGeneration(dateString, year) {
+            let zodiac = "Unknown";
+            let generation = "Unknown";
+            
+            if (dateString) {
+                const date = new Date(dateString);
+                const month = date.getMonth() + 1;
+                const day = date.getDate();
+                
+                const zodiacSigns = [
+                    { sign: "Capricorn", start: "12-22", end: "01-19" },
+                    { sign: "Aquarius", start: "01-20", end: "02-18" },
+                    { sign: "Pisces", start: "02-19", end: "03-20" },
+                    { sign: "Aries", start: "03-21", end: "04-19" },
+                    { sign: "Taurus", start: "04-20", end: "05-20" },
+                    { sign: "Gemini", start: "05-21", end: "06-20" },
+                    { sign: "Cancer", start: "06-21", end: "07-22" },
+                    { sign: "Leo", start: "07-23", end: "08-22" },
+                    { sign: "Virgo", start: "08-23", end: "09-22" },
+                    { sign: "Libra", start: "09-23", end: "10-22" },
+                    { sign: "Scorpio", start: "10-23", end: "11-21" },
+                    { sign: "Sagittarius", start: "11-22", end: "12-21" }
+                ];
+                
+                const formattedDate = (`0${month}`).slice(-2) + "-" + (`0${day}`).slice(-2);
+                for (let zodiacItem of zodiacSigns) {
+                    if (formattedDate >= zodiacItem.start || formattedDate <= zodiacItem.end) {
+                        zodiac = zodiacItem.sign;
+                        break;
+                    }
+                }
+            }
+            
+            if (year) {
+                if (year >= 1946 && year <= 1964) generation = "Boomers";
+                else if (year >= 1965 && year <= 1980) generation = "Gen X";
+                else if (year >= 1981 && year <= 1996) generation = "Millennials";
+                else if (year >= 1997 && year <= 2012) generation = "Gen Z";
+                else if (year >= 2013) generation = "Gen Alpha";
+            }
+            
+            return { zodiac, generation };
+        }    
+    
     const animalData = {
         birds: [
             {
@@ -3747,135 +3853,55 @@ document.addEventListener("DOMContentLoaded", function () {
                 motivationSource: ["Your long-term goals"]
             }
         }
-    ]
-}
+    ]}
+
     
 
-    let currentQuestionIndex = 0;
-    let userAnswers = {};
-
-    function displayQuestion() {
-        const questionContainer = document.getElementById("question-container");
-        questionContainer.innerHTML = "";
-
-        const question = questions[currentQuestionIndex];
-        const label = document.createElement("label");
-        label.textContent = question.text;
-        questionContainer.appendChild(label);
-
-        let input;
-        if (question.type === "text" || question.type === "date" || question.type === "number") {
-            input = document.createElement("input");
-            input.type = question.type;
-        } else if (question.type === "boolean") {
-            input = document.createElement("select");
-            ["Yes", "No"].forEach(optionText => {
-                const option = document.createElement("option");
-                option.value = optionText;
-                option.textContent = optionText;
-                input.appendChild(option);
-            });
-        } else if (question.type === "choice") {
-            input = document.createElement("select");
-            question.options.forEach(optionText => {
-                const option = document.createElement("option");
-                option.value = optionText;
-                option.textContent = optionText;
-                input.appendChild(option);
-            });
-        }
-
-        input.id = "quiz-input";
-        questionContainer.appendChild(input);
-
-        const button = document.createElement("button");
-        button.textContent = currentQuestionIndex === questions.length - 1 ? "Finish" : "Next";
-        button.addEventListener("click", nextQuestion);
-        questionContainer.appendChild(button);
-    }
-
-    function nextQuestion() {
-        const input = document.getElementById("quiz-input");
-        userAnswers[questions[currentQuestionIndex].key] = input.value;
-
-        if (currentQuestionIndex < questions.length - 1) {
-            currentQuestionIndex++;
-            displayQuestion();
-        } else {
-            determineSpiritAnimal();
-        }
-    }
-
-    function getZodiacSign(month, day) {
-        const zodiacSigns = [
-            "Capricorn", "Aquarius", "Pisces", "Aries", "Taurus", "Gemini",
-            "Cancer", "Leo", "Virgo", "Libra", "Scorpio", "Sagittarius"
-        ];
-        const zodiacDates = [
-            [1, 19], [2, 18], [3, 20], [4, 19], [5, 20], [6, 20],
-            [7, 22], [8, 22], [9, 22], [10, 22], [11, 21], [12, 21]
-        ];
-        for (let i = 0; i < zodiacDates.length; i++) {
-            if (month === zodiacDates[i][0] && day <= zodiacDates[i][1]) {
-                return zodiacSigns[i];
-            }
-        }
-        return zodiacSigns[month - 1];
-    }
-    
-    function getGeneration(year) {
-        if (year >= 1946 && year <= 1964) return "Boomers";
-        if (year >= 1965 && year <= 1980) return "Gen X";
-        if (year >= 1981 && year <= 1996) return "Millennials";
-        if (year >= 1997 && year <= 2012) return "Gen Z";
-        if (year >= 2013) return "Gen Alpha";
-        return "Unknown";
-    }
-    
     function determineSpiritAnimal() {
-        document.getElementById("question-container").innerHTML = "<h2>Processing your results...</h2>";
+        let animalScores = [];
+        
+        // Select a random plant at the start of each run
+        const plantAnimals = animalData.plants;
+        const selectedPlant = plantAnimals[Math.floor(Math.random() * plantAnimals.length)];
     
-        setTimeout(() => {
-            let selectedAnimal = "Human"; // Default if no match found
-            let birthDate = userAnswers["birthDate"];
-            let birthYear = parseInt(userAnswers["birthYear"], 10);
-            let userZodiac = "";
-            let userGeneration = getGeneration(birthYear);
+        Object.values(animalData).flat().forEach(animal => {
+            let score = 0;
     
-            if (birthDate) {
-                let [year, month, day] = birthDate.split("-").map(Number);
-                userZodiac = getZodiacSign(month, day);
+            for (let key in userResponses) {
+                if (animal.attributes[key] && animal.attributes[key].includes(userResponses[key])) {
+                    score++;
+                }
             }
     
-            // Step 1: Filter by user-selected animal type
-            let matchingAnimals = animalData.filter(animal => animal.type === userAnswers.animalType);
-            
-            // Step 2: Further filter by zodiac match
-            let refinedAnimals = matchingAnimals.filter(animal => animal.zodiacMatches.includes(userZodiac));
-            
-            // Step 3: Further filter by generation match
-            refinedAnimals = refinedAnimals.filter(animal => animal.generations.includes(userGeneration));
-    
-            // Step 4: Fallback to element match if no zodiac+generation match
-            if (refinedAnimals.length === 0) {
-                refinedAnimals = matchingAnimals.filter(animal => animal.traits.includes(userAnswers.element));
+            if (score > 0 || animal.name === "Human" || animal.name === selectedPlant.name) {
+                animalScores.push({ name: animal.name, score });
             }
+        });
     
-            // Step 5: Randomly pick from filtered animals
-            if (refinedAnimals.length > 0) {
-                selectedAnimal = refinedAnimals[Math.floor(Math.random() * refinedAnimals.length)];
+        // Ensure Human is always included
+        const humanEntry = animalScores.find(a => a.name === "Human");
+        if (!humanEntry) {
+            animalScores.push({ name: "Human", score: 1 });
+        }
+    
+        // Ensure the selected plant is included
+        const plantEntry = animalScores.find(a => a.name === selectedPlant.name);
+        if (!plantEntry) {
+            animalScores.push({ name: selectedPlant.name, score: 1 });
+        }
+    
+        // Weighted selection process
+        let weightedList = [];
+        animalScores.forEach(animal => {
+            for (let i = 0; i < animal.score; i++) {
+                weightedList.push(animal.name);
             }
+        });
     
-            document.getElementById("question-container").innerHTML = `
-                <h2>Your Spirit Animal is: ${selectedAnimal.name}!</h2>
-                <p><strong>Symbolic Meaning:</strong> ${selectedAnimal.symbolicMeaning}</p>
-            `;
-        }, 2000);
+        const selectedAnimal = weightedList[Math.floor(Math.random() * weightedList.length)];
+    
+        console.log("Your Spirit Animal is:", selectedAnimal);
     }
-    
-    
 
-    displayQuestion();
+    loadQuestion();
 });
-
-
