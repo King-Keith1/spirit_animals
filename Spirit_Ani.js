@@ -246,6 +246,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 zodiacMatches: ["Scorpio", "Aquarius"],
                 generations: ["Gen Z", "Millennials"],
                 symbolicMeaning: "Mysticism, Intelligence, Transformation",
+                image: "images/Raven.webp",
                 attributes: {
                     stressHandling: ["Take a break and come back", "Get overwhelmed but push through"],
                     timeOfDay: ["Night"],
@@ -283,6 +284,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 zodiacMatches: ["Capricorn", "Pisces"],
                 generations: ["Boomers", "Gen X"],
                 symbolicMeaning: "Wisdom, Mystery, Perception",
+                image: "images/Owl.webp",
                 attributes: {
                     stressHandling: ["Stay calm and analyze"],
                     timeOfDay: ["Night"],
@@ -320,6 +322,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 zodiacMatches: ["Leo", "Sagittarius"],
                 generations: ["Gen Z", "Millennials"],
                 symbolicMeaning: "Rebirth, Fire, Renewal",
+                image: "images/Phoenix.webp",
                 attributes: {
                     stressHandling: ["Try again immediately", "Get overwhelmed but push through"],
                     timeOfDay: ["Both, just depends on the situation"],
@@ -395,6 +398,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 zodiacMatches: ["Gemini", "Virgo"],
                 generations: ["Gen Z", "Millennials"],
                 symbolicMeaning: "Lightness, Adaptability, Happiness",
+                image: "images/Hummingbird.webp",
                 attributes: {
                     stressHandling: ["Act quickly to resolve it"],
                     timeOfDay: ["Day"],
@@ -432,6 +436,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 zodiacMatches: ["Scorpio", "Capricorn"],
                 generations: ["Gen X", "Millennials"],
                 symbolicMeaning: "Patience, Precision, Prosperity",
+                image: "images/Kingfisher.webp",
                 attributes: {
                     stressHandling: ["Stay calm and analyze"],
                     timeOfDay: ["Day"],
@@ -469,6 +474,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 zodiacMatches: ["Aries", "Leo"],
                 generations: ["Boomers", "Gen X"],
                 symbolicMeaning: "Power, Focus, Victory",
+                image: "images/Osprey.webp",
                 attributes: {
                     stressHandling: ["Act quickly to resolve it"],
                     timeOfDay: ["Day"],
@@ -506,6 +512,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 zodiacMatches: ["Gemini", "Libra"],
                 generations: ["Gen Z", "Millennials"],
                 symbolicMeaning: "Expression, Vibrancy, Adaptability",
+                image: "images/Parrot.webp",
                 attributes: {
                     stressHandling: ["Stay calm and analyze"],
                     timeOfDay: ["Day"],
@@ -543,6 +550,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 zodiacMatches: ["Cancer", "Capricorn"],
                 generations: ["Gen X", "Millennials"],
                 symbolicMeaning: "Survival, Community, Endurance",
+                image: "images/Penguin.webp",
                 attributes: {
                     stressHandling: ["Stay calm and analyze"],
                     timeOfDay: ["Day"],
@@ -618,6 +626,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 zodiacMatches: ["Leo", "Virgo"],
                 generations: ["Gen Z", "Millennials"],
                 symbolicMeaning: "Confidence, Vigilance, Hard Work",
+                image: "images/Rooster.webp",
                 attributes: {
                     stressHandling: ["Act quickly to resolve it"],
                     timeOfDay: ["Day"],
@@ -655,6 +664,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 zodiacMatches: ["Cancer", "Libra"],
                 generations: ["Boomers", "Gen X"],
                 symbolicMeaning: "New Beginnings, Family, Luck",
+                image: "images/Stork.webp",
                 attributes: {
                     stressHandling: ["Stay calm and analyze"],
                     timeOfDay: ["Day"],
@@ -730,6 +740,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 zodiacMatches: ["Scorpio", "Capricorn"],
                 generations: ["Gen X", "Millennials"],
                 symbolicMeaning: "Transformation, Cleansing, Renewal",
+                image: "images/Vulture.webp",
                 attributes: {
                     stressHandling: ["Stay calm and analyze"],
                     timeOfDay: ["Day"],
@@ -767,6 +778,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 zodiacMatches: ["Taurus", "Cancer"],
                 generations: ["Gen Z", "Millennials"],
                 symbolicMeaning: "Opportunity, Determination, Awareness",
+                image: "images/Woodpecker.webp",
                 attributes: {
                     stressHandling: ["Stay calm and analyze"],
                     timeOfDay: ["Day"],
@@ -1492,6 +1504,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 zodiacMatches: ["Sagittarius", "Aries"],
                 generations: ["All"],
                 symbolicMeaning: "Freedom, Power, Adventure",
+                image: "images/Horse.webp",
                 attributes: {
                     stressHandling: ["Act quickly to resolve it"],
                     timeOfDay: ["Day"],
@@ -1529,6 +1542,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 zodiacMatches: ["Scorpio", "Gemini"],
                 generations: ["Gen X", "Millennials"],
                 symbolicMeaning: "Survival, Cunning, Humor",
+                image: "images/Hyena.webp",
                 attributes: {
                     stressHandling: ["Act quickly to resolve it"],
                     timeOfDay: ["Night"],
@@ -1566,6 +1580,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 zodiacMatches: ["Scorpio", "Leo"],
                 generations: ["Boomers", "Gen X"],
                 symbolicMeaning: "Strength, Mystery, Leadership",
+                image: "images/Jaguar.webp",
                 attributes: {
                     stressHandling: ["Act quickly to resolve it"],
                     timeOfDay: ["Night"],
@@ -1603,6 +1618,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 zodiacMatches: ["Cancer", "Taurus"], // Adjusted "Cancer Seb" to "Cancer" assuming it was a typo
                 generations: ["Gen Z", "Millennials"],
                 symbolicMeaning: "Relaxation, Peace, Adaptability",
+                image: "images/Koala.webp",
                 attributes: {
                     stressHandling: ["Stay calm and analyze"],
                     timeOfDay: ["Day"],
@@ -1640,6 +1656,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 zodiacMatches: ["Leo", "Scorpio"],
                 generations: ["Gen X", "Millennials"],
                 symbolicMeaning: "Agility, Confidence, Mystery",
+                image: "images/Leopard.webp",
                 attributes: {
                     stressHandling: ["Act quickly to resolve it"],
                     timeOfDay: ["Night"],
@@ -1677,6 +1694,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 zodiacMatches: ["Leo", "Aries"],
                 generations: ["All"],
                 symbolicMeaning: "Strength, Leadership, Majesty",
+                image: "images/Lion.webp",
                 attributes: {
                     stressHandling: ["Act quickly to resolve it"],
                     timeOfDay: ["Day"],
@@ -1714,6 +1732,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 zodiacMatches: ["Scorpio", "Pisces"],
                 generations: ["Gen Z", "Millennials"],
                 symbolicMeaning: "Secrets, Intuition, Perception",
+                image: "images/Lynx.webp",
                 attributes: {
                     stressHandling: ["Stay calm and analyze"],
                     timeOfDay: ["Night"],
@@ -1751,6 +1770,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 zodiacMatches: ["Gemini", "Libra"],
                 generations: ["Gen Z", "Millennials"],
                 symbolicMeaning: "Community, Vigilance, Teamwork",
+                image: "images/Meerkat.webp",
                 attributes: {
                     stressHandling: ["Stay calm and analyze"],
                     timeOfDay: ["Day"],
@@ -1788,6 +1808,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 zodiacMatches: ["Gemini", "Aquarius"],
                 generations: ["All"],
                 symbolicMeaning: "Curiosity, Fun, Adaptability",
+                image: "images/Monkey.webp",
                 attributes: {
                     stressHandling: ["Act quickly to resolve it"],
                     timeOfDay: ["Day"],
@@ -1825,6 +1846,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 zodiacMatches: ["Taurus", "Capricorn"],
                 generations: ["Boomers", "Gen X"],
                 symbolicMeaning: "Strength, Confidence, Solitude",
+                image: "images/Moose.webp",
                 attributes: {
                     stressHandling: ["Stay calm and analyze"],
                     timeOfDay: ["Day"],
@@ -1862,6 +1884,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 zodiacMatches: ["Virgo", "Cancer"],
                 generations: ["Gen Z", "Millennials"],
                 symbolicMeaning: "Resourcefulness, Humility, Attention to Detail",
+                image: "images/Mouse animal.webp",
                 attributes: {
                     stressHandling: ["Stay calm and analyze"],
                     timeOfDay: ["Night"],
@@ -1899,6 +1922,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 zodiacMatches: ["Scorpio", "Pisces"],
                 generations: ["Gen X", "Millennials"],
                 symbolicMeaning: "Strength, Family, Intelligence",
+                image: "images/Orca.webp",
                 attributes: {
                     stressHandling: ["Stay calm and analyze"],
                     timeOfDay: ["Day"],
@@ -1936,6 +1960,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 zodiacMatches: ["Gemini", "Aquarius"],
                 generations: ["Gen Z", "Millennials"],
                 symbolicMeaning: "Joy, Playfulness, Adaptability",
+                image: "images/Otter.webp",
                 attributes: {
                     stressHandling: ["Stay calm and analyze"],
                     timeOfDay: ["Day"],
@@ -1973,6 +1998,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 zodiacMatches: ["Taurus", "Cancer"],
                 generations: ["All"],
                 symbolicMeaning: "Peace, Balance, Harmony",
+                image: "images/Panda.webp",
                 attributes: {
                     stressHandling: ["Stay calm and analyze"],
                     timeOfDay: ["Day"],
@@ -2010,6 +2036,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 zodiacMatches: ["Scorpio", "Leo"],
                 generations: ["Gen X", "Millennials"],
                 symbolicMeaning: "Mystery, Power, Grace",
+                image: "images/Panther.webp",
                 attributes: {
                     stressHandling: ["Act quickly to resolve it"],
                     timeOfDay: ["Night"],
@@ -2047,6 +2074,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 zodiacMatches: ["Aquarius", "Pisces"],
                 generations: ["Gen Z", "Millennials"],
                 symbolicMeaning: "Uniqueness, Adaptability, Mystery",
+                image: "images/Platypus.webp",
                 attributes: {
                     stressHandling: ["Stay calm and analyze"],
                     timeOfDay: ["Night"],
@@ -2084,6 +2112,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 zodiacMatches: ["Capricorn", "Scorpio"],
                 generations: ["Boomers", "Gen X"],
                 symbolicMeaning: "Survival, Strength, Solitude",
+                image: "images/Polar Bear.webp",
                 attributes: {
                     stressHandling: ["Stay calm and analyze"],
                     timeOfDay: ["Day"],
@@ -2121,6 +2150,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 zodiacMatches: ["Virgo", "Capricorn"],
                 generations: ["Gen Z", "Millennials"],
                 symbolicMeaning: "Protection, Boundaries, Resilience",
+                image: "images/Porcupine.webp",
                 attributes: {
                     stressHandling: ["Stay calm and analyze"],
                     timeOfDay: ["Night"],
@@ -2158,6 +2188,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 zodiacMatches: ["Gemini", "Scorpio"],
                 generations: ["Gen Z", "Millennials"],
                 symbolicMeaning: "Curiosity, Resourcefulness, Playfulness",
+                image: "images/Racoon.webp",
                 attributes: {
                     stressHandling: ["Stay calm and analyze"],
                     timeOfDay: ["Night"],
@@ -2195,6 +2226,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 zodiacMatches: ["Taurus", "Leo"],
                 generations: ["Boomers", "Gen X"],
                 symbolicMeaning: "Strength, Stability, Resilience",
+                image: "images/Rhino.webp",
                 attributes: {
                     stressHandling: ["Stay calm and analyze"],
                     timeOfDay: ["Day"],
@@ -2232,6 +2264,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 zodiacMatches: ["Taurus", "Pisces"],
                 generations: ["Gen Z", "Millennials"],
                 symbolicMeaning: "Relaxation, Patience, Mindfulness",
+                image: "images/Sloth.webp",
                 attributes: {
                     stressHandling: ["Stay calm and analyze"],
                     timeOfDay: ["Day"],
@@ -2269,6 +2302,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 zodiacMatches: ["Virgo", "Capricorn"],
                 generations: ["Gen Z", "Millennials"],
                 symbolicMeaning: "Preparation, Resourcefulness, Adaptability",
+                image: "images/Squirrel.webp",
                 attributes: {
                     stressHandling: ["Stay calm and analyze"],
                     timeOfDay: ["Day"],
@@ -2306,6 +2340,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 zodiacMatches: ["Leo", "Aries"],
                 generations: ["All"],
                 symbolicMeaning: "Strength, Courage, Passion",
+                image: "images/Tiger.webp",
                 attributes: {
                     stressHandling: ["Act quickly to resolve it"],
                     timeOfDay: ["Day"],
@@ -2343,6 +2378,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 zodiacMatches: ["Pisces", "Libra"],
                 generations: ["Gen Z", "Millennials"],
                 symbolicMeaning: "Magic, Purity, Imagination",
+                image: "images/Unicorn.webp",
                 attributes: {
                     stressHandling: ["Stay calm and analyze"],
                     timeOfDay: ["Day"],
@@ -2380,6 +2416,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 zodiacMatches: ["Cancer", "Pisces"],
                 generations: ["Boomers", "Gen X"],
                 symbolicMeaning: "Wisdom, Depth, Communication",
+                image: "images/Whale.webp",
                 attributes: {
                     stressHandling: ["Stay calm and analyze"],
                     timeOfDay: ["Day"],
@@ -2417,6 +2454,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 zodiacMatches: ["Scorpio", "Aries"],
                 generations: ["All"],
                 symbolicMeaning: "Loyalty, Instinct, Freedom",
+                image: "images/Wolf.webp",
                 attributes: {
                     stressHandling: ["Stay calm and analyze"],
                     timeOfDay: ["Night"],
@@ -2454,6 +2492,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 zodiacMatches: ["Taurus", "Capricorn"],
                 generations: ["Gen Z", "Millennials"],
                 symbolicMeaning: "Stability, Endurance, Protection",
+                image: "images/Wombat.webp",
                 attributes: {
                     stressHandling: ["Stay calm and analyze"],
                     timeOfDay: ["Night"],
@@ -2722,6 +2761,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 zodiacMatches: ["Aries", "Scorpio"],
                 generations: ["Gen X", "Millennials"],
                 symbolicMeaning: "Strength, Dominance, Survival",
+                image: "images/Komodo Dragon.webp",
                 attributes: {
                     stressHandling: ["Act quickly to resolve it"],
                     timeOfDay: ["Day"],
@@ -2759,6 +2799,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 zodiacMatches: ["Scorpio", "Pisces"],
                 generations: ["Gen Z", "Millennials"],
                 symbolicMeaning: "Danger, Transformation, Mystery",
+                image: "images/Viper.webp",
                 attributes: {
                     stressHandling: ["Stay calm and analyze"],
                     timeOfDay: ["Night"],
@@ -2796,6 +2837,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 zodiacMatches: ["Taurus", "Capricorn"],
                 generations: ["Boomers", "Gen X"],
                 symbolicMeaning: "Wisdom, Longevity, Stability",
+                image: "images/Tortoise.webp",
                 attributes: {
                     stressHandling: ["Stay calm and analyze"],
                     timeOfDay: ["Day"],
@@ -2874,6 +2916,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 zodiacMatches: ["Pisces", "Cancer"],
                 generations: ["Gen Z", "Millennials"],
                 symbolicMeaning: "Flow, Adaptability, Mystery",
+                image: "images/Jellyfish.webp",
                 attributes: {
                     stressHandling: ["Stay calm and analyze"],
                     timeOfDay: ["Night"],
@@ -2911,6 +2954,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 zodiacMatches: ["Gemini", "Scorpio"],
                 generations: ["Gen Z", "Millennials"],
                 symbolicMeaning: "Intelligence, Mystery, Regeneration",
+                image: "images/Octopus.webp",
                 attributes: {
                     stressHandling: ["Stay calm and analyze"],
                     timeOfDay: ["Night"],
@@ -2948,6 +2992,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 zodiacMatches: ["Aries", "Scorpio"],
                 generations: ["Gen X", "Millennials"],
                 symbolicMeaning: "Power, Survival, Focus",
+                image: "images/Piranha.webp",
                 attributes: {
                     stressHandling: ["Act quickly to resolve it"],
                     timeOfDay: ["Day"],
@@ -2985,6 +3030,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 zodiacMatches: ["Cancer", "Pisces"],
                 generations: ["Gen Z", "Millennials"],
                 symbolicMeaning: "Patience, Fatherhood, Grace",
+                image: "images/Seahorse.webp",
                 attributes: {
                     stressHandling: ["Stay calm and analyze"],
                     timeOfDay: ["Day"],
@@ -3022,6 +3068,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 zodiacMatches: ["Leo", "Scorpio"],
                 generations: ["Boomers", "Gen X"],
                 symbolicMeaning: "Strength, Authority, Survival",
+                image: "images/Shark.webp",
                 attributes: {
                     stressHandling: ["Act quickly to resolve it"],
                     timeOfDay: ["Day"],
@@ -3059,6 +3106,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 zodiacMatches: ["Libra", "Pisces"],
                 generations: ["Gen Z", "Millennials"],
                 symbolicMeaning: "Healing, Renewal, Harmony",
+                image: "images/Starfish.webp",
                 attributes: {
                     stressHandling: ["Stay calm and analyze"],
                     timeOfDay: ["Day"],
@@ -3096,6 +3144,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 zodiacMatches: ["Scorpio", "Pisces"],
                 generations: ["Gen X", "Millennials"],
                 symbolicMeaning: "Grace, Mystery, Defense",
+                image: "images/Stingray.webp",
                 attributes: {
                     stressHandling: ["Stay calm and analyze"],
                     timeOfDay: ["Night"],
@@ -3133,6 +3182,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 zodiacMatches: ["Aries", "Capricorn"],
                 generations: ["Boomers", "Gen X"],
                 symbolicMeaning: "Focus, Strength, Precision",
+                image: "images/Swordfish.webp",
                 attributes: {
                     stressHandling: ["Act quickly to resolve it"],
                     timeOfDay: ["Day"],
@@ -3170,6 +3220,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 zodiacMatches: ["Scorpio", "Pisces"],
                 generations: ["Gen Z", "Millennials"],
                 symbolicMeaning: "Chaos, Power, Mystery",
+                image: "images/Kraken.webp",
                 attributes: {
                     stressHandling: ["Act quickly to resolve it"],
                     timeOfDay: ["Night"],
@@ -3207,6 +3258,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 zodiacMatches: ["Cancer", "Scorpio"],
                 generations: ["Gen Z", "Millennials"],
                 symbolicMeaning: "Protection, Adaptability, Emotion",
+                image: "images/Crab.webp",
                 attributes: {
                     stressHandling: ["Stay calm and analyze"],
                     timeOfDay: ["Night"],
@@ -3324,6 +3376,7 @@ document.addEventListener("DOMContentLoaded", function () {
         zodiacMatches: ["Pisces", "Scorpio"],
         generations: ["Boomers", "Gen X"],
         symbolicMeaning: "Mystery, Legend, Intrigue",
+        image: "images/Loch Ness Monster.webp",
         attributes: {
             stressHandling: ["Stay calm and analyze"],
             timeOfDay: ["Night"],
@@ -3361,6 +3414,7 @@ document.addEventListener("DOMContentLoaded", function () {
         zodiacMatches: ["Aries", "Scorpio"],
         generations: ["Gen X", "Millennials"],
         symbolicMeaning: "Transformation, Fire, Rebirth",
+        image: "images/Salamanda.webp",
         attributes: {
             stressHandling: ["Act quickly to resolve it"],
             timeOfDay: ["Night"],
@@ -3398,6 +3452,7 @@ document.addEventListener("DOMContentLoaded", function () {
         zodiacMatches: ["Pisces", "Virgo"],
         generations: ["Gen Z", "Millennials"],
         symbolicMeaning: "Adaptability, Renewal, Exploration",
+        image: "images/Newt.webp",
         attributes: {
             stressHandling: ["Stay calm and analyze"],
             timeOfDay: ["Day"],
@@ -3435,6 +3490,7 @@ document.addEventListener("DOMContentLoaded", function () {
         zodiacMatches: ["Taurus", "Capricorn"],
         generations: ["Boomers", "Gen X"],
         symbolicMeaning: "Stability, Protection, Transformation",
+        image: "images/Toad.webp",
         attributes: {
             stressHandling: ["Stay calm and analyze"],
             timeOfDay: ["Night"],
@@ -3472,6 +3528,7 @@ document.addEventListener("DOMContentLoaded", function () {
         zodiacMatches: ["Scorpio", "Pisces"],
         generations: ["Gen Z", "Millennials"],
         symbolicMeaning: "Mystery, Adaptability, Hidden Strength",
+        image: "images/Caecilian.webp",
         attributes: {
             stressHandling: ["Stay calm and analyze"],
             timeOfDay: ["Night"],
@@ -3509,6 +3566,7 @@ document.addEventListener("DOMContentLoaded", function () {
         zodiacMatches: ["Cancer", "Pisces"],
         generations: ["Gen Z", "Millennials"],
         symbolicMeaning: "Grace, Water, Serenity",
+        image: "images/Siren.webp",
         attributes: {
             stressHandling: ["Stay calm and analyze"],
             timeOfDay: ["Day"],
@@ -3663,6 +3721,7 @@ document.addEventListener("DOMContentLoaded", function () {
             zodiacMatches: ["Scorpio", "Taurus"],
             generations: ["Gen X", "Millennials"],
             symbolicMeaning: "Strength, Persistence, Renewal",
+            image: "images/Beetle.webp",
             attributes: {
                 stressHandling: ["Stay calm and analyze"],
                 timeOfDay: ["Day"],
@@ -3700,6 +3759,7 @@ document.addEventListener("DOMContentLoaded", function () {
             zodiacMatches: ["Aries", "Scorpio"],
             generations: ["Gen X", "Millennials"],
             symbolicMeaning: "Aggression, Defense, Focus",
+            image: "images/Wasp.webp",
             attributes: {
                 stressHandling: ["Act quickly to resolve it"],
                 timeOfDay: ["Day"],
@@ -3888,6 +3948,7 @@ document.addEventListener("DOMContentLoaded", function () {
             zodiacMatches: ["Scorpio", "Pisces"],
             generations: ["Gen X", "Millennials"],
             symbolicMeaning: "Intuition, Mystery, Transformation",
+            image: "images/Moth.webp",
             attributes: {
                 stressHandling: ["Stay calm and analyze"],
                 timeOfDay: ["Night"],
@@ -3925,6 +3986,7 @@ document.addEventListener("DOMContentLoaded", function () {
             zodiacMatches: ["Scorpio", "Aries"],
             generations: ["Gen X", "Millennials"],
             symbolicMeaning: "Power, Defense, Mystery",
+            image: "images/Scorpion.webp",
             attributes: {
                 stressHandling: ["Act quickly to resolve it"],
                 timeOfDay: ["Night"],
@@ -3962,6 +4024,7 @@ document.addEventListener("DOMContentLoaded", function () {
             zodiacMatches: ["Scorpio", "Capricorn"],
             generations: ["Gen X", "Millennials"],
             symbolicMeaning: "Patience, Mystery, Strength",
+            image: "images/Tarantula.webp",
             attributes: {
                 stressHandling: ["Stay calm and analyze"],
                 timeOfDay: ["Night"],
