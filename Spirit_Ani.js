@@ -33,8 +33,7 @@ document.addEventListener("DOMContentLoaded", function () {
         ];
         let currentQuestionIndex = 0;
         let userResponses = {};
-        
-        
+    
         const questionText = document.getElementById("question-text");
         const answerOptions = document.getElementById("answer-options");
         const nextBtn = document.getElementById("next-btn");
@@ -54,11 +53,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 });
                 answerOptions.appendChild(input);
             } else if (question.type === "boolean") {
-                ["Yes", "No"].forEach(choice => {
+                ["YES", "NO"].forEach(choice => {
                     const button = document.createElement("button");
                     button.textContent = choice;
                     button.addEventListener("click", () => {
-                        userResponses[question.key] = choice === "Yes";
+                        userResponses[question.key] = choice === "YES";
                         nextBtn.disabled = false;
                     });
                     answerOptions.appendChild(button);
@@ -78,88 +77,101 @@ document.addEventListener("DOMContentLoaded", function () {
     
         nextBtn.addEventListener("click", () => {
             currentQuestionIndex++;
-            if (currentQuestionIndex < questions.length) {
-              loadQuestion();
-            } else {
-              console.log("Quiz complete!", userResponses);
-          
-              if (userResponses["birthDate"]) {
+        if (currentQuestionIndex < questions.length) {
+            loadQuestion();
+        } else {
+            console.log("Quiz complete!", userResponses);
+
+            if (userResponses["birthDate"]) {
                 const birthDate = new Date(userResponses["birthDate"]);
+                if (isNaN(birthDate.getTime())) {
+                    console.error("Birthdate is invalid.");
+                    return;
+                }
                 const zodiacGen = getZodiacAndGeneration(birthDate);
                 userResponses["zodiac"] = zodiacGen.zodiac;
                 userResponses["generation"] = zodiacGen.generation;
-              } else {
-                console.error("Birthdate is missing or invalid.");
-              }
-          
-              const selectedAnimal = determineSpiritAnimal();
-          
-              let resultContainer = document.getElementById("result-container");
-              if (!resultContainer) {
+            } else {
+                console.error("Birthdate is missing.");
+            }
+
+            const selectedAnimal = determineSpiritAnimal(userResponses);
+
+            let resultContainer = document.getElementById("result-container");
+            if (!resultContainer) {
                 resultContainer = document.createElement("div");
                 resultContainer.id = "result-container";
                 document.body.appendChild(resultContainer);
-              }
-          
-              console.log(selectedAnimal);
-              resultContainer.innerHTML = `
+            }
+
+            // Hide the quiz container
+            const quizContainer = document.getElementById("quiz-container");
+            quizContainer.style.display = "none";
+
+            console.log(selectedAnimal);
+            resultContainer.innerHTML = `
                 <img src="${selectedAnimal.image}" alt="${selectedAnimal.name}" class="spirit-animal-image" loading="lazy">
                 <h2>Your Spirit Animal: ${selectedAnimal.name}</h2>
                 <p>Symbolic Meaning: ${selectedAnimal.symbolicMeaning}</p>
-              `;
-              resultContainer.classList.add("fade-in");
-            }
-          });
-        function getZodiacAndGeneration(dateString) {
-            let zodiac = "Unknown";
-            let generation = "Unknown";
-            
-            if (dateString) {
-                const date = new Date(dateString);
-                const month = date.getMonth() + 1;
-                const day = date.getDate();
-                const year = date.getFullYear();  // Extract the year properly
-        
-                const zodiacSigns = [
-                    { sign: "Capricorn", start: "12-22", end: "01-19" },
-                    { sign: "Aquarius", start: "01-20", end: "02-18" },
-                    { sign: "Pisces", start: "02-19", end: "03-20" },
-                    { sign: "Aries", start: "03-21", end: "04-19" },
-                    { sign: "Taurus", start: "04-20", end: "05-20" },
-                    { sign: "Gemini", start: "05-21", end: "06-20" },
-                    { sign: "Cancer", start: "06-21", end: "07-22" },
-                    { sign: "Leo", start: "07-23", end: "08-22" },
-                    { sign: "Virgo", start: "08-23", end: "09-22" },
-                    { sign: "Libra", start: "09-23", end: "10-22" },
-                    { sign: "Scorpio", start: "10-23", end: "11-21" },
-                    { sign: "Sagittarius", start: "11-22", end: "12-21" }
-                ];
-                
-                const formattedDate = (`0${month}`).slice(-2) + "-" + (`0${day}`).slice(-2);
-                for (let zodiacItem of zodiacSigns) {
-                    if (formattedDate >= zodiacItem.start || formattedDate <= zodiacItem.end) {
+            `;
+            resultContainer.classList.add("fade-in");
+        }
+    });
+
+    function getZodiacAndGeneration(dateString) {
+        let zodiac = "Unknown";
+        let generation = "Unknown";
+
+        if (dateString) {
+            const date = new Date(dateString);
+            const month = date.getMonth() + 1;
+            const day = date.getDate();
+            const year = date.getFullYear();
+
+            const zodiacSigns = [
+                { sign: "Capricorn", start: "12-22", end: "01-19" },
+                { sign: "Aquarius", start: "01-20", end: "02-18" },
+                { sign: "Pisces", start: "02-19", end: "03-20" },
+                { sign: "Aries", start: "03-21", end: "04-19" },
+                { sign: "Taurus", start: "04-20", end: "05-20" },
+                { sign: "Gemini", start: "05-21", end: "06-20" },
+                { sign: "Cancer", start: "06-21", end: "07-22" },
+                { sign: "Leo", start: "07-23", end: "08-22" },
+                { sign: "Virgo", start: "08-23", end: "09-22" },
+                { sign: "Libra", start: "09-23", end: "10-22" },
+                { sign: "Scorpio", start: "10-23", end: "11-21" },
+                { sign: "Sagittarius", start: "11-22", end: "12-21" },
+            ];
+
+            for (let zodiacItem of zodiacSigns) {
+                const [startMonth, startDay] = zodiacItem.start.split("-").map(Number);
+                const [endMonth, endDay] = zodiacItem.end.split("-").map(Number);
+                const startDate = new Date(year, startMonth - 1, startDay);
+                const endDate = new Date(year, endMonth - 1, endDay);
+                const currentDate = new Date(year, month - 1, day);
+
+                if (startMonth > endMonth) {
+                    if (currentDate >= startDate || currentDate <= endDate) {
+                        zodiac = zodiacItem.sign;
+                        break;
+                    }
+                } else {
+                    if (currentDate >= startDate && currentDate <= endDate) {
                         zodiac = zodiacItem.sign;
                         break;
                     }
                 }
-        
-                // Determine generation based on year
-                if (year >= 1946 && year <= 1964) generation = "Boomers";
-                else if (year >= 1965 && year <= 1980) generation = "Gen X";
-                else if (year >= 1981 && year <= 1996) generation = "Millennials";
-                else if (year >= 1997 && year <= 2012) generation = "Gen Z";
-                else if (year >= 2013) generation = "Gen Alpha";
             }
-            
-            return { zodiac, generation };
+
+            if (year >= 1946 && year <= 1964) generation = "Boomers";
+            else if (year >= 1965 && year <= 1980) generation = "Gen X";
+            else if (year >= 1981 && year <= 1996) generation = "Millennials";
+            else if (year >= 1997 && year <= 2012) generation = "Gen Z";
+            else if (year > 2012) generation = "Gen Alpha";
         }
-        
-        // Now call the function AFTER defining it
-        const birthDate = new Date(userResponses["birthDate"]);
-        const zodiacGen = getZodiacAndGeneration(birthDate);
-        userResponses["zodiac"] = zodiacGen.zodiac;
-        userResponses["generation"] = zodiacGen.generation;
-        
+
+        return { zodiac, generation };
+    }
     
     const animalData = {
         birds: [
@@ -4096,83 +4108,128 @@ document.addEventListener("DOMContentLoaded", function () {
     ]
         }
 
-        function determineSpiritAnimal() {
+        function determineSpiritAnimal(userResponses) {
+            // Input validation
+            if (!userResponses || typeof userResponses !== "object") {
+                console.error("Error: Invalid userResponses provided.");
+                return {
+                    name: "Unknown Spirit Animal",
+                    symbolicMeaning: "Unknown",
+                    image: "images/unknown.webp"
+                };
+            }
+    
             let animalScores = [];
-          
+    
+            // Check if animalData exists and has content
             if (!animalData || Object.keys(animalData).length === 0) {
-              console.error("Error: animalData is missing.");
-              return { name: "Unknown Spirit Animal", symbolicMeaning: "Unknown", image: "images/unknown.webp" };
+                console.error("Error: animalData is missing.");
+                return {
+                    name: "Unknown Spirit Animal",
+                    symbolicMeaning: "Unknown",
+                    image: "images/unknown.webp"
+                };
             }
-          
-            const allAnimals = [
-              ...(animalData.birds || []),
-              ...(animalData.mammals || []),
-              ...(animalData.reptiles || [])
-            ];
-          
+    
+            // Combine all animals from different categories
+            const allAnimals = [...(animalData.birds || [])];
+    
+            // If no animals are available, return default
+            if (!allAnimals || allAnimals.length === 0) {
+                console.error("Error: No animals found in animalData.");
+                return {
+                    name: "Unknown Spirit Animal",
+                    symbolicMeaning: "Unknown",
+                    image: "images/unknown.webp"
+                };
+            }
+    
+            // Calculate scores for each animal
             allAnimals.forEach(animal => {
-              let score = 0;
-          
-              for (let key in userResponses) {
-                if (key === "birthDate" || key === "zodiac" || key === "generation") continue;
-          
-                const userResponse = userResponses[key];
-                const animalAttribute = animal.attributes[key];
-          
-                if (animalAttribute && Array.isArray(animalAttribute) && animalAttribute.includes(userResponse)) {
-                  score += 2;
-                } else if (animalAttribute && animalAttribute === userResponse) {
-                  score += 2;
+                let score = 0;
+    
+                // Validate animal structure
+                if (!animal || !animal.attributes || !animal.name) {
+                    console.warn("Skipping invalid animal entry:", animal);
+                    return;
                 }
-              }
-          
-              if (animal.zodiacMatches && animal.zodiacMatches.includes(userResponses["zodiac"])) {
-                score += 1;
-              }
-          
-              if (animal.generations && animal.generations.includes(userResponses["generation"])) {
-                score += 1;
-              }
-          
-              if (score > 0) {
-                animalScores.push({ 
-                  name: animal.name, 
-                  score, 
-                  symbolicMeaning: animal.symbolicMeaning, 
-                  image: animal.image 
-                });
-              }
+    
+                // Score based on user responses
+                for (let key in userResponses) {
+                    if (key === "birthDate" || key === "zodiac" || key === "generation") continue;
+    
+                    const userResponse = userResponses[key];
+                    const animalAttribute = animal.attributes[key];
+    
+                    // Skip if userResponse is undefined or null
+                    if (userResponse === undefined || userResponse === null) continue;
+    
+                    if (animalAttribute) {
+                        if (Array.isArray(animalAttribute) && animalAttribute.includes(userResponse)) {
+                            score += 2;
+                        } else if (animalAttribute === userResponse) {
+                            score += 2;
+                        }
+                    }
+                }
+    
+                // Bonus points for zodiac match
+                if (userResponses["zodiac"] && animal.zodiacMatches?.includes(userResponses["zodiac"])) {
+                    score += 1;
+                }
+    
+                // Bonus points for generation match
+                if (userResponses["generation"] && animal.generations?.includes(userResponses["generation"])) {
+                    score += 1;
+                }
+    
+                // Only add animals with a positive score
+                if (score > 0) {
+                    animalScores.push({
+                        name: animal.name,
+                        score,
+                        symbolicMeaning: animal.symbolicMeaning || "Unknown",
+                        image: animal.image || "images/unknown.webp"
+                    });
+                }
             });
-          
+    
+            // If no animals scored, return default
             if (animalScores.length === 0) {
-              console.warn("No matches found! Assigning a default animal.");
-              animalScores.push({ 
-                name: "Unknown Spirit Animal", 
-                score: 1, 
-                symbolicMeaning: "Unknown", 
-                image: "images/unknown.webp" 
-              });
+                console.warn("No matches found! Assigning a default animal.");
+                animalScores.push({
+                    name: "Unknown Spirit Animal",
+                    score: 1,
+                    symbolicMeaning: "Unknown",
+                    image: "images/unknown.webp"
+                });
             }
-          
+    
+            // Create weighted list for random selection
             let weightedList = [];
             animalScores.forEach(animal => {
-              for (let i = 0; i < animal.score; i++) {
-                weightedList.push({ 
-                  name: animal.name, 
-                  symbolicMeaning: animal.symbolicMeaning, 
-                  image: animal.image 
-                });
-              }
+                // Ensure score is a positive number
+                const scoreCount = Math.max(1, Math.floor(animal.score));
+                for (let i = 0; i < scoreCount; i++) {
+                    weightedList.push({
+                        name: animal.name,
+                        symbolicMeaning: animal.symbolicMeaning,
+                        image: animal.image
+                    });
+                }
             });
-          
+    
+            // Select a random animal from the weighted list
             const selectedAnimal = weightedList.length > 0
-              ? weightedList[Math.floor(Math.random() * weightedList.length)]
-              : { 
-                  name: "Unknown Spirit Animal", 
-                  symbolicMeaning: "Unknown", 
-                  image: "images/unknown.webp" 
+                ? weightedList[Math.floor(Math.random() * weightedList.length)]
+                : {
+                    name: "Unknown Spirit Animal",
+                    symbolicMeaning: "Unknown",
+                    image: "images/unknown.webp"
                 };
-          
+    
             return selectedAnimal;
-          }
-});
+        }
+    
+        loadQuestion();
+    });

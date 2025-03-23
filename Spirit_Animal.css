@@ -12,7 +12,7 @@ body {
 }
 
 /* Container */
-.container {
+#quiz-container {
     width: 90%;
     max-width: 500px;
     background: white;
@@ -52,7 +52,7 @@ button {
     border-radius: 8px;
     font-size: 16px;
     cursor: pointer;
-    transition: 0.3s;
+    transition: background 0.3s;
 }
 
 button:hover {
@@ -85,7 +85,7 @@ button:hover {
 }
 
 /* Optional: Hide the form when the result is displayed */
-.container:has(#result-container) form {
+#quiz-container:has(#result-container) form {
     display: none;
 }
 
