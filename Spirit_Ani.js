@@ -79,22 +79,37 @@ document.addEventListener("DOMContentLoaded", function () {
         nextBtn.addEventListener("click", () => {
             currentQuestionIndex++;
             if (currentQuestionIndex < questions.length) {
-                loadQuestion();
+              loadQuestion();
             } else {
-                console.log("Quiz complete!", userResponses);
-                
-                if (userResponses["birthDate"]) {
-                    const birthDate = new Date(userResponses["birthDate"]);
-                    const zodiacGen = getZodiacAndGeneration(birthDate);
-                    userResponses["zodiac"] = zodiacGen.zodiac;
-                    userResponses["generation"] = zodiacGen.generation;
-                } else {
-                    console.error("Birthdate is missing or invalid.");
-                }
-                
-                determineSpiritAnimal();
+              console.log("Quiz complete!", userResponses);
+          
+              if (userResponses["birthDate"]) {
+                const birthDate = new Date(userResponses["birthDate"]);
+                const zodiacGen = getZodiacAndGeneration(birthDate);
+                userResponses["zodiac"] = zodiacGen.zodiac;
+                userResponses["generation"] = zodiacGen.generation;
+              } else {
+                console.error("Birthdate is missing or invalid.");
+              }
+          
+              const selectedAnimal = determineSpiritAnimal();
+          
+              let resultContainer = document.getElementById("result-container");
+              if (!resultContainer) {
+                resultContainer = document.createElement("div");
+                resultContainer.id = "result-container";
+                document.body.appendChild(resultContainer);
+              }
+          
+              console.log(selectedAnimal);
+              resultContainer.innerHTML = `
+                <img src="${selectedAnimal.image}" alt="${selectedAnimal.name}" class="spirit-animal-image" loading="lazy">
+                <h2>Your Spirit Animal: ${selectedAnimal.name}</h2>
+                <p>Symbolic Meaning: ${selectedAnimal.symbolicMeaning}</p>
+              `;
+              resultContainer.classList.add("fade-in");
             }
-        });
+          });
         function getZodiacAndGeneration(dateString) {
             let zodiac = "Unknown";
             let generation = "Unknown";
@@ -155,6 +170,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 zodiacMatches: ["Aries", "Scorpio"],
                 generations: ["Boomers", "Gen X"],
                 symbolicMeaning: "Leadership, Freedom, Perspective",
+                image: "images/Eagle.webp",
                 attributes: {
                     stressHandling: ["Stay calm and analyze", "Act quickly to resolve it"],
                     timeOfDay: ["Day"],
@@ -192,6 +208,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 zodiacMatches: ["Aries", "Sagittarius"],
                 generations: ["Gen X", "Millennials"],
                 symbolicMeaning: "Vision, Clarity, Purpose",
+                image: "images/Hawk.webp",
                 attributes: {
                     stressHandling: ["Stay calm and analyze", "Act quickly to resolve it"],
                     timeOfDay: ["Day"],
@@ -340,6 +357,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 zodiacMatches: ["Sagittarius", "Aquarius"],
                 generations: ["Boomers", "Gen X"],
                 symbolicMeaning: "Freedom, Endurance, Journey",
+                image: "images/Albatross.webp",
                 attributes: {
                     stressHandling: ["Stay calm and analyze"],
                     timeOfDay: ["Day"],
@@ -562,6 +580,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 zodiacMatches: ["Leo", "Aries"],
                 generations: ["Boomers", "Gen X"],
                 symbolicMeaning: "Power, Honor, Nobility",
+                image: "images/Griffen.webp",
                 attributes: {
                     stressHandling: ["Act quickly to resolve it"],
                     timeOfDay: ["Day"],
@@ -667,6 +686,44 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
             },
             {
+                name: "Falcon",
+                type: "Bird",
+                traits: ["Swift", "Precise", "Independent"],
+                zodiacMatches: ["Aries", "Sagittarius"],
+                generations: ["Gen X", "Millennials"],
+                symbolicMeaning: "Speed, Focus, Determination",
+                image: "images/Falcon.webp",
+                attributes: {
+                  stressHandling: ["Act quickly to resolve it"],
+                  timeOfDay: ["Day"],
+                  decisionMaking: ["Logically, based on facts"],
+                  rulerOrFree: ["Ruler"],
+                  diet: ["Carnivore"],
+                  environment: ["Mountains", "Plains"],
+                  socialPreference: ["Alone"],
+                  leadership: ["Take charge"],
+                  season: ["Spring", "Summer"],
+                  mainTrait: ["Independence"],
+                  sense: ["Eyesight"],
+                  taskApproach: ["As soon as possible"],
+                  unusualSituation: ["React immediately"],
+                  failureReaction: ["Try again immediately"],
+                  firstImpression: ["Charisma"],
+                  seduction: ["Confidence", "Determination"],
+                  vacation: ["Exciting adventures and exploring"],
+                  personality: ["Courageous"],
+                  objective: ["Fame"],
+                  ambition: ["Be a leader in major projects"],
+                  animalType: ["Bird"],
+                  superpower: ["Flight", "Super speed"],
+                  element: ["Wind"],
+                  conflictHandling: ["Face it head-on"],
+                  criticismHandling: ["Defend yourself and explain"],
+                  freeTime: ["Working on personal projects"],
+                  motivationSource: ["The desire to prove yourself"]
+                }
+              },
+            {
                 name: "Vulture",
                 type: "Bird",
                 traits: ["Patient", "Survivor", "Resourceful"],
@@ -741,12 +798,89 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
             },
             {
+                name: "Crow",
+                type: "Bird",
+                traits: ["Intelligent", "Adaptable", "Mysterious"],
+                zodiacMatches: ["Scorpio", "Aquarius"],
+                generations: ["Gen Z", "Millennials"],
+                symbolicMeaning: "Insight, Adaptability, Magic",
+                image: "images/Crow.webp",
+                attributes: {
+                  stressHandling: ["Stay calm and analyze", "Take a break and come back"],
+                  timeOfDay: ["Day", "Night"],
+                  decisionMaking: ["Intuitively, gut feeling"],
+                  rulerOrFree: ["Free"],
+                  diet: ["Omnivore"],
+                  environment: ["Forest", "Plains"],
+                  socialPreference: ["Surrounded by people"],
+                  leadership: ["Follow others' lead"],
+                  season: ["Fall", "Winter"],
+                  mainTrait: ["Wisdom", "Curiosity"],
+                  sense: ["Sixth sense"],
+                  taskApproach: ["Your way"],
+                  unusualSituation: ["Think before acting", "Get around the problem"],
+                  failureReaction: ["Learn from it and move on"],
+                  firstImpression: ["Mind", "Curiosity"],
+                  seduction: ["Mystery", "Intelligence"],
+                  vacation: ["Relaxing in nature or at home"],
+                  personality: ["Creative", "Curious"],
+                  objective: ["Knowledge"],
+                  ambition: ["Enjoy life"],
+                  animalType: ["Bird"],
+                  superpower: ["Sixth sense", "Flight"],
+                  element: ["Air"],
+                  conflictHandling: ["Stay silent but hold a grudge"],
+                  criticismHandling: ["Reflect and learn from it", "Feel hurt but move on"],
+                  freeTime: ["Reading, exploring secrets"],
+                  motivationSource: ["The belief that things will get better"]
+                }
+              },
+              {
+                name: "Flamingo",
+                type: "Bird",
+                traits: ["Graceful", "Social", "Vibrant"],
+                zodiacMatches: ["Libra", "Leo"],
+                generations: ["Gen Z", "Millennials"],
+                symbolicMeaning: "Balance, Community, Beauty",
+                image: "images/Flamingo.webp",
+                attributes: {
+                  stressHandling: ["Take a break and come back"],
+                  timeOfDay: ["Day"],
+                  decisionMaking: ["Intuitively, gut feeling"],
+                  rulerOrFree: ["Free"],
+                  diet: ["Omnivore"],
+                  environment: ["Ocean", "Plains"],
+                  socialPreference: ["Surrounded by people"],
+                  leadership: ["Follow others' lead"],
+                  season: ["Summer"],
+                  mainTrait: ["Curiosity"],
+                  sense: ["Eyesight"],
+                  taskApproach: ["Your way"],
+                  unusualSituation: ["Get around the problem"],
+                  failureReaction: ["Take time to recover"],
+                  firstImpression: ["Joyful"],
+                  seduction: ["Confidence", "Mystery"],
+                  vacation: ["Beach parties"],
+                  personality: ["Creative", "Peaceful"],
+                  objective: ["Happiness"],
+                  ambition: ["Enjoy life"],
+                  animalType: ["Bird"],
+                  superpower: ["Flight"],
+                  element: ["Water", "Wind"],
+                  conflictHandling: ["Avoid conflict"],
+                  criticismHandling: ["Feel hurt but move on"],
+                  freeTime: ["Exploring new hobbies"],
+                  motivationSource: ["The belief that things will get better"]
+                }
+              },
+            {
                 name: "Dove",
                 type: "Bird",
                 traits: ["Peaceful", "Loving", "Gentle"],
                 zodiacMatches: ["Libra", "Pisces"],
                 generations: ["All"],
                 symbolicMeaning: "Peace, Love, Harmony",
+                image: "images/Dove.webp",
                 attributes: {
                     stressHandling: ["Stay calm and analyze"],
                     timeOfDay: ["Day"],
@@ -788,6 +922,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 zodiacMatches: ["Taurus", "Scorpio"],
                 generations: ["Gen X", "Millennials"],
                 symbolicMeaning: "Defense, Boundaries, Survival",
+                image: "images/Armadillo.webp",
                 attributes: {
                     stressHandling: ["Stay calm and analyze"],
                     timeOfDay: ["Night"],
@@ -825,6 +960,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 zodiacMatches: ["Scorpio", "Pisces"],
                 generations: ["Gen Z", "Millennials"],
                 symbolicMeaning: "Rebirth, Illusion, Transition",
+                image: "images/Bat.webp",
                 attributes: {
                     stressHandling: ["Stay calm and analyze"],
                     timeOfDay: ["Night"],
@@ -862,6 +998,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 zodiacMatches: ["Cancer", "Leo"],
                 generations: ["Boomers", "Gen X"],
                 symbolicMeaning: "Strength, Courage, Solitude",
+                image: "images/Bear.webp",
                 attributes: {
                     stressHandling: ["Stay calm and analyze"],
                     timeOfDay: ["Day"],
@@ -899,6 +1036,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 zodiacMatches: ["Taurus", "Capricorn"],
                 generations: ["Boomers", "Gen X"],
                 symbolicMeaning: "Stability, Prosperity, Resilience",
+                image: "images/Bison.webp",
                 attributes: {
                     stressHandling: ["Stay calm and analyze"],
                     timeOfDay: ["Day"],
@@ -936,6 +1074,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 zodiacMatches: ["Aries", "Scorpio"],
                 generations: ["Gen X", "Millennials"],
                 symbolicMeaning: "Courage, Tenacity, Assertiveness",
+                image: "images/Boar.webp",
                 attributes: {
                     stressHandling: ["Act quickly to resolve it"],
                     timeOfDay: ["Day"],
@@ -973,6 +1112,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 zodiacMatches: ["Libra", "Pisces"],
                 generations: ["Gen Z", "Millennials"],
                 symbolicMeaning: "Harmony, Community, Relaxation",
+                image: "images/Capybara.webp",
                 attributes: {
                     stressHandling: ["Stay calm and analyze"],
                     timeOfDay: ["Day"],
@@ -1010,6 +1150,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 zodiacMatches: ["Leo", "Scorpio"],
                 generations: ["All"],
                 symbolicMeaning: "Mystery, Independence, Intuition",
+                image: "images/Cat.webp",
                 attributes: {
                     stressHandling: ["Stay calm and analyze"],
                     timeOfDay: ["Night"],
@@ -1047,6 +1188,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 zodiacMatches: ["Aries", "Sagittarius"],
                 generations: ["Gen Z", "Millennials"],
                 symbolicMeaning: "Speed, Agility, Determination",
+                image: "images/Cheetah.webp",
                 attributes: {
                     stressHandling: ["Act quickly to resolve it"],
                     timeOfDay: ["Day"],
@@ -1084,6 +1226,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 zodiacMatches: ["Cancer", "Pisces"],
                 generations: ["Boomers", "Gen X"],
                 symbolicMeaning: "Gentleness, Innocence, Intuition",
+                image: "images/Deer.webp",
                 attributes: {
                     stressHandling: ["Stay calm and analyze"],
                     timeOfDay: ["Day"],
@@ -1121,6 +1264,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 zodiacMatches: ["Gemini", "Aquarius"],
                 generations: ["Gen Z", "Millennials"],
                 symbolicMeaning: "Joy, Harmony, Communication",
+                image: "images/Dolphin.webp",
                 attributes: {
                     stressHandling: ["Stay calm and analyze"],
                     timeOfDay: ["Day"],
@@ -1158,6 +1302,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 zodiacMatches: ["Cancer", "Libra"],
                 generations: ["All"],
                 symbolicMeaning: "Loyalty, Companionship, Trust",
+                image: "images/Dog.webp",
                 attributes: {
                     stressHandling: ["Stay calm and analyze"],
                     timeOfDay: ["Day"],
@@ -1195,6 +1340,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 zodiacMatches: ["Cancer", "Capricorn"],
                 generations: ["Boomers", "Gen X"],
                 symbolicMeaning: "Wisdom, Strength, Memory",
+                image: "images/Elephant.webp",
                 attributes: {
                     stressHandling: ["Stay calm and analyze"],
                     timeOfDay: ["Day"],
@@ -1232,6 +1378,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 zodiacMatches: ["Gemini", "Scorpio"],
                 generations: ["Gen Z", "Millennials"],
                 symbolicMeaning: "Cunning, Intelligence, Strategy",
+                image: "images/Fox.webp",
                 attributes: {
                     stressHandling: ["Stay calm and analyze"],
                     timeOfDay: ["Night"],
@@ -1269,6 +1416,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 zodiacMatches: ["Leo", "Taurus"],
                 generations: ["Boomers", "Gen X"],
                 symbolicMeaning: "Strength, Leadership, Family",
+                image: "images/Gorilla.webp",
                 attributes: {
                     stressHandling: ["Stay calm and analyze"],
                     timeOfDay: ["Day"],
@@ -1306,6 +1454,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 zodiacMatches: ["Virgo", "Capricorn"],
                 generations: ["Gen Z", "Millennials"],
                 symbolicMeaning: "Protection, Resilience, Humility",
+                image: "images/Hedgehog.webp",
                 attributes: {
                     stressHandling: ["Stay calm and analyze"],
                     timeOfDay: ["Night"],
@@ -2345,6 +2494,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 zodiacMatches: ["Gemini", "Scorpio"],
                 generations: ["Gen Z", "Millennials"],
                 symbolicMeaning: "Adaptability, Transformation, Perception",
+                image: "images/Chameleon.webp",
                 attributes: {
                     stressHandling: ["Stay calm and analyze"],
                     timeOfDay: ["Day"],
@@ -2382,6 +2532,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 zodiacMatches: ["Leo", "Sagittarius"],
                 generations: ["All"],
                 symbolicMeaning: "Power, Wisdom, Magic",
+                image: "images/Dragon.webp",
                 attributes: {
                     stressHandling: ["Act quickly to resolve it"],
                     timeOfDay: ["Day"],
@@ -2419,6 +2570,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 zodiacMatches: ["Virgo", "Capricorn"],
                 generations: ["Gen Z", "Millennials"],
                 symbolicMeaning: "Survival, Adaptability, Regeneration",
+                image: "images/Gecko.webp",
                 attributes: {
                     stressHandling: ["Stay calm and analyze"],
                     timeOfDay: ["Night"],
@@ -2456,6 +2608,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 zodiacMatches: ["Scorpio", "Aries"],
                 generations: ["Gen X", "Millennials"],
                 symbolicMeaning: "Speed, Danger, Transformation",
+                image: "images/Black mamba.webp",
                 attributes: {
                     stressHandling: ["Act quickly to resolve it"],
                     timeOfDay: ["Night"],
@@ -2493,6 +2646,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 zodiacMatches: ["Scorpio", "Leo"],
                 generations: ["Boomers", "Gen X"],
                 symbolicMeaning: "Power, Protection, Rebirth",
+                image: "images/Cobra.webp",
                 attributes: {
                     stressHandling: ["Act quickly to resolve it"],
                     timeOfDay: ["Night"],
@@ -2530,6 +2684,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 zodiacMatches: ["Taurus", "Capricorn"],
                 generations: ["Boomers", "Gen X"],
                 symbolicMeaning: "Patience, Strength, Stealth",
+                image: "images/Crocodile.webp",
                 attributes: {
                     stressHandling: ["Stay calm and analyze"],
                     timeOfDay: ["Day"],
@@ -2681,6 +2836,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 zodiacMatches: ["Gemini", "Libra"],
                 generations: ["Gen Z", "Millennials"],
                 symbolicMeaning: "Joy, Adaptability, Teamwork",
+                image: "images/Clownfish.webp",
                 attributes: {
                     stressHandling: ["Stay calm and analyze"],
                     timeOfDay: ["Day"],
@@ -3092,6 +3248,7 @@ document.addEventListener("DOMContentLoaded", function () {
         zodiacMatches: ["Scorpio", "Pisces"],
         generations: ["Gen Z", "Millennials"],
         symbolicMeaning: "Regeneration, Adaptability, Mystery",
+        image: "images/Axolotl.webp",
         attributes: {
             stressHandling: ["Stay calm and analyze"],
             timeOfDay: ["Night"],
@@ -3129,6 +3286,7 @@ document.addEventListener("DOMContentLoaded", function () {
         zodiacMatches: ["Cancer", "Scorpio"],
         generations: ["All"],
         symbolicMeaning: "Transformation, Renewal, Cleansing",
+        image: "images/Frog.webp",
         attributes: {
             stressHandling: ["Stay calm and analyze"],
             timeOfDay: ["Day"],
@@ -3391,6 +3549,7 @@ document.addEventListener("DOMContentLoaded", function () {
             zodiacMatches: ["Virgo", "Capricorn"],
             generations: ["All"],
             symbolicMeaning: "Diligence, Patience, Teamwork",
+            image: "images/Ant.webp",
             attributes: {
                 stressHandling: ["Stay calm and analyze"],
                 timeOfDay: ["Day"],
@@ -3428,6 +3587,7 @@ document.addEventListener("DOMContentLoaded", function () {
             zodiacMatches: ["Taurus", "Virgo"],
             generations: ["All"],
             symbolicMeaning: "Community, Hard Work, Sweetness",
+            image: "images/Bee.webp",
             attributes: {
                 stressHandling: ["Stay calm and analyze"],
                 timeOfDay: ["Day"],
@@ -3465,6 +3625,7 @@ document.addEventListener("DOMContentLoaded", function () {
             zodiacMatches: ["Gemini", "Pisces"],
             generations: ["All"],
             symbolicMeaning: "Transformation, Beauty, Freedom",
+            image: "images/Butterfly.webp",
             attributes: {
                 stressHandling: ["Stay calm and analyze"],
                 timeOfDay: ["Day"],
@@ -3576,6 +3737,7 @@ document.addEventListener("DOMContentLoaded", function () {
             zodiacMatches: ["Gemini", "Aquarius"],
             generations: ["Gen Z", "Millennials"],
             symbolicMeaning: "Change, Clarity, Illusion",
+            image: "images/Dragonfly.webp",
             attributes: {
                 stressHandling: ["Stay calm and analyze"],
                 timeOfDay: ["Day"],
@@ -3613,6 +3775,7 @@ document.addEventListener("DOMContentLoaded", function () {
             zodiacMatches: ["Leo", "Pisces"],
             generations: ["Gen Z", "Millennials"],
             symbolicMeaning: "Light, Inspiration, Magic",
+            image: "images/Firefly.webp",
             attributes: {
                 stressHandling: ["Stay calm and analyze"],
                 timeOfDay: ["Night"],
@@ -3650,6 +3813,7 @@ document.addEventListener("DOMContentLoaded", function () {
             zodiacMatches: ["Sagittarius", "Gemini"],
             generations: ["Gen Z", "Millennials"],
             symbolicMeaning: "Leaping Forward, Joy, Abundance",
+            image: "images/Grasshopper.webp",
             attributes: {
                 stressHandling: ["Stay calm and analyze"],
                 timeOfDay: ["Day"],
@@ -3835,6 +3999,7 @@ document.addEventListener("DOMContentLoaded", function () {
             zodiacMatches: ["Taurus", "Virgo"],
             generations: ["Gen X", "Millennials"],
             symbolicMeaning: "Resourcefulness, Persistence, Renewal",
+            image: "images/Dung beetles.webp",
             attributes: {
                 stressHandling: ["Stay calm and analyze"],
                 timeOfDay: ["Day"],
@@ -3870,53 +4035,81 @@ document.addEventListener("DOMContentLoaded", function () {
 
         function determineSpiritAnimal() {
             let animalScores = [];
-        
+          
             if (!animalData || Object.keys(animalData).length === 0) {
-                console.error("Error: animalData is missing.");
-                return;
+              console.error("Error: animalData is missing.");
+              return { name: "Unknown Spirit Animal", symbolicMeaning: "Unknown", image: "images/unknown.webp" };
             }
-        
-            Object.values(animalData).flat().forEach(animal => {
-                let score = 0;
-                for (let key in userResponses) {
-                    if (animal.attributes[key] && animal.attributes[key].includes(userResponses[key])) {
-                        score++;
-                    }
+          
+            const allAnimals = [
+              ...(animalData.birds || []),
+              ...(animalData.mammals || []),
+              ...(animalData.reptiles || [])
+            ];
+          
+            allAnimals.forEach(animal => {
+              let score = 0;
+          
+              for (let key in userResponses) {
+                if (key === "birthDate" || key === "zodiac" || key === "generation") continue;
+          
+                const userResponse = userResponses[key];
+                const animalAttribute = animal.attributes[key];
+          
+                if (animalAttribute && Array.isArray(animalAttribute) && animalAttribute.includes(userResponse)) {
+                  score += 2;
+                } else if (animalAttribute && animalAttribute === userResponse) {
+                  score += 2;
                 }
-                if (score > 0) {
-                    animalScores.push({ name: animal.name, score });
-                }
+              }
+          
+              if (animal.zodiacMatches && animal.zodiacMatches.includes(userResponses["zodiac"])) {
+                score += 1;
+              }
+          
+              if (animal.generations && animal.generations.includes(userResponses["generation"])) {
+                score += 1;
+              }
+          
+              if (score > 0) {
+                animalScores.push({ 
+                  name: animal.name, 
+                  score, 
+                  symbolicMeaning: animal.symbolicMeaning, 
+                  image: animal.image 
+                });
+              }
             });
-        
+          
             if (animalScores.length === 0) {
-                console.warn("No matches found! Assigning a default animal.");
-                animalScores.push({ name: "Unknown Spirit Animal", score: 1 });
+              console.warn("No matches found! Assigning a default animal.");
+              animalScores.push({ 
+                name: "Unknown Spirit Animal", 
+                score: 1, 
+                symbolicMeaning: "Unknown", 
+                image: "images/unknown.webp" 
+              });
             }
-        
+          
             let weightedList = [];
             animalScores.forEach(animal => {
-                for (let i = 0; i < animal.score; i++) {
-                    weightedList.push(animal.name);
-                }
+              for (let i = 0; i < animal.score; i++) {
+                weightedList.push({ 
+                  name: animal.name, 
+                  symbolicMeaning: animal.symbolicMeaning, 
+                  image: animal.image 
+                });
+              }
             });
-        
-            const selectedAnimal = (weightedList.length > 0)
-                ? weightedList[Math.floor(Math.random() * weightedList.length)]
-                : "Unknown Spirit Animal";
-        
-            // Ensure the result container exists
-            let resultContainer = document.getElementById("result-container");
-            if (!resultContainer) {
-                resultContainer = document.createElement("div");
-                resultContainer.id = "result-container";
-                document.body.appendChild(resultContainer);
-            }
-            console.log(selectedAnimal)
-            // Display result
-            resultContainer.innerHTML = `<h2>Your Spirit Animal: ${selectedAnimal}</h2>
-                             <p>Symbolic Meaning: ${symbolicMeaning}</p>`;
-        }                   
-         
-
-    loadQuestion();
+          
+            const selectedAnimal = weightedList.length > 0
+              ? weightedList[Math.floor(Math.random() * weightedList.length)]
+              : { 
+                  name: "Unknown Spirit Animal", 
+                  symbolicMeaning: "Unknown", 
+                  image: "images/unknown.webp" 
+                };
+          
+            return selectedAnimal;
+          }
 });
