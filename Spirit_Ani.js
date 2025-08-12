@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
     const questions = [
-        { text: "What is your name?", type: "text", key: "name" },
+        { text: "What is your name?", type: "text", key: "name", },
         { text: "Is your name based on the Bible?", type: "boolean", key: "nameOrigin" },
         { text: "What is your birthdate?", type: "date", key: "birthDate" },
         { text: "How do you handle pressure or stress?", type: "choice", key: "stressHandling", options: ["Stay calm and analyze", "Act quickly to resolve it", "Take a break and come back", "Get overwhelmed but push through"] },
