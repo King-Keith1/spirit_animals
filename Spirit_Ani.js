@@ -4132,7 +4132,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
     
             // Combine all animals from different categories
-            const allAnimals = [...(animalData.birds || [])];
+            const allAnimals = Object.values(animalData).flat();
     
             // If no animals are available, return default
             if (!allAnimals || allAnimals.length === 0) {
