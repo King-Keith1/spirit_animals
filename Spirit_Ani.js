@@ -274,6 +274,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 ${userResponses["mbtiType"] ? `<span class="mbti-badge">${userResponses["mbtiType"]}</span>` : ""}
                 <p>Symbolic Meaning: ${selectedAnimal.symbolicMeaning}</p>
                 ${mbtiBlurb}
+                ${userResponses["mbtiType"] ? `<p class="mbti-disclaimer">Just for fun — this quiz isn't a substitute for a real MBTI assessment. Think of it as a nudge, not a verdict.</p>` : ""}
             `;
             resultContainer.classList.add("fade-in");
         }
