@@ -251,13 +251,26 @@ document.addEventListener("DOMContentLoaded", function () {
             const quizContainer = document.getElementById("quiz-container");
             quizContainer.style.display = "none";
 
+            function escapeHtml(str) {
+                const div = document.createElement("div");
+                div.textContent = str;
+                return div.innerHTML;
+            }
+
+            function possessive(name) {
+                const trimmed = (name || "").trim();
+                if (!trimmed) return "Your";
+                const escaped = escapeHtml(trimmed);
+                return escaped.endsWith("s") || escaped.endsWith("S") ? `${escaped}'` : `${escaped}'s`;
+            }
+
             console.log(selectedAnimal, "MBTI:", userResponses["mbtiType"]);
             const mbtiBlurb = userResponses["mbtiType"] && mbtiDescriptions[userResponses["mbtiType"]]
                 ? `<p>${mbtiDescriptions[userResponses["mbtiType"]]}</p>`
                 : "";
             resultContainer.innerHTML = `
                 <img src="${selectedAnimal.image}" alt="${selectedAnimal.name}" class="spirit-animal-image" loading="lazy">
-                <h2>Your Spirit Animal: ${selectedAnimal.name}</h2>
+                <h2>${possessive(userResponses["name"])} Spirit Animal: ${selectedAnimal.name}</h2>
                 ${userResponses["mbtiType"] ? `<span class="mbti-badge">${userResponses["mbtiType"]}</span>` : ""}
                 <p>Symbolic Meaning: ${selectedAnimal.symbolicMeaning}</p>
                 ${mbtiBlurb}
