@@ -1,113 +1,345 @@
+/* ============================================
+   Spirit & Type — design tokens
+   A totem-quiz aesthetic: deep forest night
+   outside the card, warm parchment within,
+   with a soft "spirit aura" as the signature
+   glow that ties the animal + type theme
+   together.
+   ============================================ */
+
+:root {
+    --night: #16241d;
+    --night-2: #1f3327;
+    --parchment: #f1e9d2;
+    --parchment-dim: #e8dfc3;
+    --ink: #24312a;
+    --ink-soft: #55614f;
+    --moss: #4c7a5c;
+    --moss-dark: #395e46;
+    --gold: #c99a44;
+    --gold-bright: #ddb662;
+    --glow: #8fd6c1;
+
+    --font-display: "Fraunces", Georgia, serif;
+    --font-body: "Work Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+}
+
 /* General Styles */
 body {
-    font-family: 'Poppins', sans-serif;
-    background-color: #f4f4f9;
-    color: #333;
+    font-family: var(--font-body);
+    background:
+        radial-gradient(ellipse 900px 600px at 15% -10%, rgba(143, 214, 193, 0.16), transparent 60%),
+        radial-gradient(ellipse 700px 500px at 100% 100%, rgba(201, 154, 68, 0.10), transparent 55%),
+        var(--night);
+    color: var(--ink);
     margin: 0;
-    padding: 0;
+    padding: 24px;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Ambient background aura — the signature element, echoed again
+   behind the revealed spirit animal at the end of the quiz */
+#page-aura {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(circle 520px at 50% 45%, rgba(143, 214, 193, 0.10), transparent 70%);
+    animation: aura-breathe 8s ease-in-out infinite;
+}
+
+@keyframes aura-breathe {
+    0%, 100% { opacity: 0.6; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.06); }
 }
 
 /* Container */
 #quiz-container {
-    width: 90%;
-    max-width: 500px;
-    background: white;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 480px;
+    background: var(--parchment);
+    padding: 32px 30px 28px;
+    border-radius: 18px;
+    border: 1px solid rgba(76, 122, 92, 0.25);
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.5) inset,
+        0 20px 50px rgba(10, 20, 15, 0.45),
+        0 0 0 1px rgba(0, 0, 0, 0.02);
     text-align: center;
+    position: relative;
+    z-index: 1;
 }
 
-/* Form Styling */
-form {
+/* Header */
+#quiz-header {
+    margin-bottom: 20px;
+}
+
+#quiz-eyebrow {
+    margin: 0 0 4px;
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--moss-dark);
+    opacity: 0.75;
+}
+
+#quiz-title {
+    margin: 0;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 30px;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+}
+
+/* Progress Bar — a gold trail through moss, with a soft leading glow */
+#progress-bar-track {
+    width: 100%;
+    height: 6px;
+    background: rgba(76, 122, 92, 0.18);
+    border-radius: 999px;
+    overflow: visible;
+    margin-bottom: 26px;
+    position: relative;
+}
+
+#progress-bar-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--moss), var(--gold-bright));
+    border-radius: 999px;
+    transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+}
+
+#progress-bar-fill::after {
+    content: "";
+    position: absolute;
+    right: -2px;
+    top: 50%;
+    width: 10px;
+    height: 10px;
+    transform: translateY(-50%);
+    background: var(--gold-bright);
+    border-radius: 50%;
+    box-shadow: 0 0 10px 2px rgba(221, 182, 98, 0.7);
+}
+
+/* Question text */
+#question-text {
+    font-family: var(--font-display);
+    font-size: 21px;
+    font-weight: 500;
+    line-height: 1.4;
+    color: var(--ink);
+    margin: 0 0 20px;
+    min-height: 1.4em;
+}
+
+/* Answer options */
+#answer-options {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 10px;
+    margin-bottom: 22px;
 }
 
-label {
-    font-weight: bold;
-    text-align: left;
-}
-
-input, select {
+#answer-options button {
     width: 100%;
-    padding: 10px;
-    margin-top: 5px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    font-size: 16px;
-}
-
-/* Button */
-button {
-    background: #007bff;
-    color: white;
-    border: none;
-    padding: 12px;
-    border-radius: 8px;
-    font-size: 16px;
+    text-align: left;
+    background: rgba(255, 255, 255, 0.35);
+    color: var(--ink);
+    border: 1.5px solid rgba(76, 122, 92, 0.35);
+    padding: 13px 16px;
+    border-radius: 12px;
+    font-family: var(--font-body);
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.35;
     cursor: pointer;
-    transition: background 0.3s;
+    transition: border-color 0.2s ease, background 0.2s ease, transform 0.15s ease;
 }
 
-button:hover {
-    background: #0056b3;
+#answer-options button:hover {
+    border-color: var(--moss);
+    background: rgba(76, 122, 92, 0.10);
+}
+
+#answer-options button:active {
+    transform: scale(0.98);
+    background: var(--moss);
+    border-color: var(--moss);
+    color: var(--parchment);
+}
+
+#answer-options button:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 2px;
+}
+
+/* Text / date inputs */
+#answer-options input {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1.5px solid rgba(76, 122, 92, 0.35);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.5);
+    font-family: var(--font-body);
+    font-size: 15px;
+    color: var(--ink);
+}
+
+#answer-options input:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 2px;
+    border-color: var(--moss);
+}
+
+/* Next button */
+#next-btn {
+    background: var(--moss-dark);
+    color: var(--parchment);
+    border: none;
+    padding: 13px;
+    width: 100%;
+    border-radius: 12px;
+    font-family: var(--font-body);
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.15s ease, opacity 0.2s ease;
+}
+
+#next-btn:hover:not(:disabled) {
+    background: var(--moss);
+}
+
+#next-btn:active:not(:disabled) {
+    transform: scale(0.98);
+}
+
+#next-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+#next-btn:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 2px;
 }
 
 /* Result Styling */
 #result-container {
     margin-top: 20px;
-    padding: 15px;
-    background: #eaf5ff;
-    border-radius: 10px;
-    border: 1px solid #d1e7ff;
-    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.05);
-    transition: opacity 0.3s ease-in-out;
-    opacity: 1;
+    padding: 34px 28px;
+    background: var(--parchment);
+    border-radius: 18px;
+    border: 1px solid rgba(76, 122, 92, 0.25);
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.5) inset,
+        0 20px 50px rgba(10, 20, 15, 0.45);
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    opacity: 0;
+}
+
+#result-container.fade-in {
+    animation: result-reveal 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes result-reveal {
+    from { opacity: 0; transform: translateY(10px) scale(0.98); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
 }
 
 #result-container h2 {
-    color: #007bff;
-    font-size: 24px;
-    margin-bottom: 10px;
+    font-family: var(--font-display);
+    color: var(--ink);
+    font-size: 26px;
+    font-weight: 600;
+    margin: 4px 0 10px;
 }
 
 #result-container p {
+    font-family: var(--font-display);
     font-size: 16px;
-    color: #555;
+    color: var(--ink-soft);
     font-style: italic;
+    line-height: 1.5;
     margin: 8px 0;
 }
 
-/* MBTI badge */
+/* MBTI badge — styled like a small wax seal */
 #result-container .mbti-badge {
     display: inline-block;
-    margin: 6px 0 10px 0;
-    padding: 6px 14px;
-    background: #007bff;
-    color: white;
-    border-radius: 20px;
-    font-size: 14px;
-    font-weight: bold;
+    margin: 2px 0 12px;
+    padding: 5px 16px;
+    background: linear-gradient(135deg, var(--gold-bright), var(--gold));
+    color: #2b1f0d;
+    border-radius: 999px;
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 700;
     font-style: normal;
-    letter-spacing: 1px;
+    letter-spacing: 0.08em;
+    box-shadow: 0 4px 14px rgba(201, 154, 68, 0.45);
 }
 
-/* Optional: Hide the form when the result is displayed */
-#quiz-container:has(#result-container) form {
-    display: none;
-}
-
+/* Spirit animal image — glows with the same aura as the page background */
 .spirit-animal-image {
-    max-width: 200px;
+    max-width: 190px;
     height: auto;
-    margin: 0 auto 15px auto;
+    margin: 0 auto 18px auto;
     display: block;
-    border-radius: 8px;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    box-shadow:
+        0 0 0 4px rgba(255, 255, 255, 0.5),
+        0 0 40px 6px rgba(143, 214, 193, 0.45),
+        0 10px 30px rgba(10, 20, 15, 0.35);
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    #page-aura {
+        animation: none;
+    }
+    #result-container.fade-in {
+        animation: none;
+        opacity: 1;
+    }
+    #answer-options button,
+    #next-btn {
+        transition: none;
+    }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+    body {
+        padding: 16px;
+    }
+    #quiz-container,
+    #result-container {
+        padding: 24px 20px;
+        border-radius: 14px;
+    }
+    #quiz-title {
+        font-size: 25px;
+    }
+    #question-text {
+        font-size: 19px;
+    }
 }
