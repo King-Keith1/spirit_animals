@@ -84,6 +84,20 @@ button:hover {
     margin: 8px 0;
 }
 
+/* MBTI badge */
+#result-container .mbti-badge {
+    display: inline-block;
+    margin: 6px 0 10px 0;
+    padding: 6px 14px;
+    background: #007bff;
+    color: white;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    font-style: normal;
+    letter-spacing: 1px;
+}
+
 /* Optional: Hide the form when the result is displayed */
 #quiz-container:has(#result-container) form {
     display: none;
