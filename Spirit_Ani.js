@@ -60,15 +60,41 @@ document.addEventListener("DOMContentLoaded", function () {
         { text: "Would you prefer being alone most of your life or surrounded by people?", type: "choice", key: "socialPreference", options: ["Alone", "Surrounded by people"] },
         { text: "Do you naturally take charge in group situations, or do you prefer to follow others' lead?", type: "choice", key: "leadership", options: ["Take charge", "Follow others' lead"] },
         { text: "What season do you thrive in?", type: "choice", key: "season", options: ["Spring", "Summer", "Fall", "Winter"] },
-        { text: "Which trait defines you the most?", type: "choice", key: "mainTrait", options: ["Independence", "Empathy", "Curiosity", "Wisdom", "Perseverance"] },
+        { text: "Which trait best defines you?", type: "choice", key: "definingTrait",
+            options: [
+                "Curiosity — always exploring, always asking why",
+                "Empathy — attuned to how others feel",
+                "Independence — you'd rather chart your own path",
+                "Wisdom — thoughtful, grounded, sees the big picture",
+                "Perseverance — you don't quit"
+            ],
+            mapKeys: {
+                "Curiosity — always exploring, always asking why": { mainTrait: "Curiosity", personality: "Curious" },
+                "Empathy — attuned to how others feel": { mainTrait: "Empathy", personality: "Peaceful" },
+                "Independence — you'd rather chart your own path": { mainTrait: "Independence", personality: "Creative" },
+                "Wisdom — thoughtful, grounded, sees the big picture": { mainTrait: "Wisdom", personality: "Sensible" },
+                "Perseverance — you don't quit": { mainTrait: "Perseverance", personality: "Courageous" }
+            } },
         { text: "If you had to rely on just one of your senses, what would it be?", type: "choice", key: "sense", options: ["Hearing", "Smell", "Eyesight", "Sixth sense"] },
         { text: "When you take on a task, you like to get it done...?", type: "choice", key: "taskApproach", options: ["Your way", "In a team", "As soon as possible"] },
         { text: "Faced with an unusual situation...", type: "choice", key: "unusualSituation", options: ["React immediately", "Think before acting", "Get around the problem"] },
         { text: "How do you react to failure?", type: "choice", key: "failureReaction", options: ["Learn from it and move on", "Try again immediately", "Take time to recover", "Avoid risks to prevent failure"] },
-        { text: "People are often surprised by your...", type: "choice", key: "firstImpression", options: ["Charisma", "Mind", "Speed", "Curiosity", "I don't know"] },
-        { text: "Your seductive trump card?", type: "choice", key: "seduction", options: ["Confidence", "Mystery", "Intelligence", "Determination", "I don't know"] },
+        { text: "What do people find most compelling about you?", type: "choice", key: "compellingTrait",
+            options: [
+                "Your charisma and confidence",
+                "Your mind and intelligence",
+                "Your speed and drive",
+                "Your curiosity and air of mystery",
+                "Not sure"
+            ],
+            mapKeys: {
+                "Your charisma and confidence": { firstImpression: "Charisma", seduction: "Confidence" },
+                "Your mind and intelligence": { firstImpression: "Mind", seduction: "Intelligence" },
+                "Your speed and drive": { firstImpression: "Speed", seduction: "Determination" },
+                "Your curiosity and air of mystery": { firstImpression: "Curiosity", seduction: "Mystery" },
+                "Not sure": { firstImpression: "I don't know", seduction: "I don't know" }
+            } },
         { text: "What does your ideal vacation look like?", type: "choice", key: "vacation", options: ["Relaxing in nature or at home", "Exciting adventures and exploring", "Socializing at parties and events"] },
-        { text: "Which describes you more?", type: "choice", key: "personality", options: ["Sensible", "Peaceful", "Curious", "Courageous", "Creative"] },
         { text: "Most important objective?", type: "choice", key: "objective", options: ["Fame", "Wealth", "Love", "Peace"] },
         { text: "Your ambition?", type: "choice", key: "ambition", options: ["Fulfill dreams", "Enjoy life", "Be a leader in major projects"] },
         { text: "Which major animal do you identify with?", type: "choice", key: "animalType", options: ["Bird", "Mammal", "Reptile", "Fish", "Amphibian"] },
@@ -85,12 +111,18 @@ document.addEventListener("DOMContentLoaded", function () {
         const questionText = document.getElementById("question-text");
         const answerOptions = document.getElementById("answer-options");
         const nextBtn = document.getElementById("next-btn");
+        const progressBarFill = document.getElementById("progress-bar-fill");
     
         function loadQuestion() {
             const question = questions[currentQuestionIndex];
             questionText.textContent = question.text;
             answerOptions.innerHTML = "";
             nextBtn.disabled = true;
+
+            if (progressBarFill) {
+                const percent = Math.round((currentQuestionIndex / questions.length) * 100);
+                progressBarFill.style.width = percent + "%";
+            }
     
             if (question.type === "text" || question.type === "date" || question.type === "number") {
                 const input = document.createElement("input");
@@ -115,7 +147,11 @@ document.addEventListener("DOMContentLoaded", function () {
                     const button = document.createElement("button");
                     button.textContent = choice;
                     button.addEventListener("click", () => {
-                        userResponses[question.key] = choice;
+                        if (question.mapKeys && question.mapKeys[choice]) {
+                            Object.assign(userResponses, question.mapKeys[choice]);
+                        } else {
+                            userResponses[question.key] = choice;
+                        }
                         nextBtn.disabled = false;
                     });
                     answerOptions.appendChild(button);
