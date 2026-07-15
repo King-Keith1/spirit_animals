@@ -1,7 +1,16 @@
 document.addEventListener("DOMContentLoaded", function () {
     const questions = [
         { text: "What is your name?", type: "text", key: "name" },
-        { text: "Is your name based on the Bible?", type: "boolean", key: "nameOrigin" },
+        { text: "When it comes to home, are you a wanderer or a nester?", type: "choice", key: "mbti_JP5",
+            options: [
+                "A wanderer — always drawn to new territory",
+                "A nester — you build a home and stay rooted"
+            ],
+            mapKeys: {
+                "A wanderer — always drawn to new territory": { territory: "Wanderer", mbti_JP5: "Wanderer" },
+                "A nester — you build a home and stay rooted": { territory: "Nester", mbti_JP5: "Nester" }
+            },
+            mbti: { "Wanderer": "P", "Nester": "J" } },
         { text: "What is your birthdate?", type: "date", key: "birthDate" },
         { text: "At a party, you tend to...", type: "choice", key: "mbti_EI1",
             options: ["Mingle with everyone, energized by the crowd", "Stick to a few people or find a quiet corner"],
@@ -183,7 +192,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 { keys: ["mbti_EI1", "mbti_EI2", "mbti_EI3", "mbti_EI4"], letters: ["E", "I"] },
                 { keys: ["mbti_SN1", "mbti_SN2", "mbti_SN3", "mbti_SN4"], letters: ["S", "N"] },
                 { keys: ["mbti_TF1", "mbti_TF2", "mbti_TF3", "mbti_TF4"], letters: ["T", "F"] },
-                { keys: ["mbti_JP1", "mbti_JP2", "mbti_JP3", "mbti_JP4"], letters: ["J", "P"] }
+                { keys: ["mbti_JP1", "mbti_JP2", "mbti_JP3", "mbti_JP4", "mbti_JP5"], letters: ["J", "P"] }
             ];
             let type = "";
             for (const dichotomy of dichotomies) {
@@ -452,7 +461,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 "motivationSource": [
                     "Your long-term goals",
                     "The desire to prove yourself"
-                ]
+                ],
+                "territory": "Wanderer"
             },
             "mbtiMatches": [
                 "INTJ",
@@ -570,7 +580,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 "motivationSource": [
                     "Your long-term goals",
                     "The desire to prove yourself"
-                ]
+                ],
+                "territory": "Wanderer"
             },
             "mbtiMatches": [
                 "INTJ",
@@ -686,7 +697,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 ],
                 "motivationSource": [
                     "The belief that things will get better"
-                ]
+                ],
+                "territory": "Nester"
             },
             "mbtiMatches": [
                 "INFJ",
@@ -798,7 +810,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 ],
                 "motivationSource": [
                     "Your long-term goals"
-                ]
+                ],
+                "territory": "Nester"
             },
             "mbtiMatches": [
                 "INTJ",
@@ -908,7 +921,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 ],
                 "motivationSource": [
                     "The desire to prove yourself"
-                ]
+                ],
+                "territory": "Wanderer"
             },
             "mbtiMatches": [
                 "ENTP",
@@ -1014,7 +1028,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 ],
                 "motivationSource": [
                     "Your long-term goals"
-                ]
+                ],
+                "territory": "Wanderer"
             },
             "mbtiMatches": [
                 "INFJ",
@@ -1122,7 +1137,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 ],
                 "motivationSource": [
                     "The desire to prove yourself"
-                ]
+                ],
+                "territory": "Wanderer"
             },
             "mbtiMatches": [
                 "ENTP",
@@ -1229,7 +1245,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 ],
                 "motivationSource": [
                     "Your long-term goals"
-                ]
+                ],
+                "territory": "Wanderer"
             },
             "mbtiMatches": [
                 "ISTJ",
@@ -1336,7 +1353,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 ],
                 "motivationSource": [
                     "The desire to prove yourself"
-                ]
+                ],
+                "territory": "Wanderer"
             },
             "mbtiMatches": [
                 "ISTP",
@@ -1443,7 +1461,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 ],
                 "motivationSource": [
                     "The desire to prove yourself"
-                ]
+                ],
+                "territory": "Wanderer"
             },
             "mbtiMatches": [
                 "ENTP",
@@ -1550,7 +1569,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 ],
                 "motivationSource": [
                     "Your long-term goals"
-                ]
+                ],
+                "territory": "Wanderer"
             },
             "mbtiMatches": [
                 "ESTJ",
@@ -1656,7 +1676,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 ],
                 "motivationSource": [
                     "The desire to prove yourself"
-                ]
+                ],
+                "territory": "Nester"
             },
             "mbtiMatches": [
                 "ESTP",
@@ -1762,7 +1783,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 ],
                 "motivationSource": [
                     "The desire to prove yourself"
-                ]
+                ],
+                "territory": "Wanderer"
             },
             "mbtiMatches": [
                 "ENTP",
@@ -1868,7 +1890,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 ],
                 "motivationSource": [
                     "Your long-term goals"
-                ]
+                ],
+                "territory": "Wanderer"
             },
             "mbtiMatches": [
                 "ENFJ",
@@ -1978,7 +2001,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 ],
                 "motivationSource": [
                     "The desire to prove yourself"
-                ]
+                ],
+                "territory": "Wanderer"
             },
             "mbtiMatches": [
                 "ESTP",
@@ -2084,7 +2108,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 ],
                 "motivationSource": [
                     "Your long-term goals"
-                ]
+                ],
+                "territory": "Nester"
             },
             "mbtiMatches": [
                 "ISTJ",
@@ -2190,7 +2215,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 ],
                 "motivationSource": [
                     "The desire to prove yourself"
-                ]
+                ],
+                "territory": "Nester"
             },
             "mbtiMatches": [
                 "ISTJ",
@@ -2307,7 +2333,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 ],
                 "motivationSource": [
                     "The belief that things will get better"
-                ]
+                ],
+                "territory": "Wanderer"
             },
             "mbtiMatches": [
                 "ENFJ",
@@ -2417,7 +2444,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 ],
                 "motivationSource": [
                     "The belief that things will get better"
-                ]
+                ],
+                "territory": "Wanderer"
             },
             "mbtiMatches": [
                 "ENFJ",
@@ -2522,7 +2550,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 ],
                 "motivationSource": [
                     "Your long-term goals"
-                ]
+                ],
+                "territory": "Wanderer"
             },
             "mbtiMatches": [
                 "ENTJ",
@@ -2631,7 +2660,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 ],
                 "motivationSource": [
                     "Your long-term goals"
-                ]
+                ],
+                "territory": "Nester"
             },
             "mbtiMatches": [
                 "ISTJ",
@@ -2738,7 +2768,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 ],
                 "motivationSource": [
                     "Your long-term goals"
-                ]
+                ],
+                "territory": "Nester"
             },
             "mbtiMatches": [
                 "INFJ",
@@ -2845,7 +2876,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 ],
                 "motivationSource": [
                     "Your long-term goals"
-                ]
+                ],
+                "territory": "Nester"
             },
             "mbtiMatches": [
                 "ISTJ",
@@ -2951,7 +2983,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 ],
                 "motivationSource": [
                     "Your long-term goals"
-                ]
+                ],
+                "territory": "Nester"
             },
             "mbtiMatches": [
                 "ESTJ",
@@ -3058,7 +3091,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 ],
                 "motivationSource": [
                     "The desire to prove yourself"
-                ]
+                ],
+                "territory": "Wanderer"
             },
             "mbtiMatches": [
                 "ISTP",
@@ -3164,7 +3198,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 ],
                 "motivationSource": [
                     "Your long-term goals"
-                ]
+                ],
+                "territory": "Nester"
             },
             "mbtiMatches": [
                 "ENFJ",
@@ -3270,7 +3305,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 ],
                 "motivationSource": [
                     "Your long-term goals"
-                ]
+                ],
+                "territory": "Nester"
             },
             "mbtiMatches": [
                 "INTJ",
@@ -3376,7 +3412,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 ],
                 "motivationSource": [
                     "The desire to prove yourself"
-                ]
+                ],
+                "territory": "Wanderer"
             },
             "mbtiMatches": [
                 "ISTP",
@@ -3483,7 +3520,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 ],
                 "motivationSource": [
                     "Your long-term goals"
-                ]
+                ],
+                "territory": "Wanderer"
             },
             "mbtiMatches": [
                 "ENTJ",
@@ -3589,7 +3627,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 ],
                 "motivationSource": [
                     "Your long-term goals"
-                ]
+                ],
+                "territory": "Wanderer"
             },
             "mbtiMatches": [
                 "ENTJ",
@@ -3695,7 +3734,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 ],
                 "motivationSource": [
                     "Your long-term goals"
-                ]
+                ],
+                "territory": "Nester"
             },
             "mbtiMatches": [
                 "ENTJ",
@@ -3802,7 +3842,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 ],
                 "motivationSource": [
                     "Your long-term goals"
-                ]
+                ],
+                "territory": "Nester"
             },
             "mbtiMatches": [
                 "ESTJ",
@@ -3909,7 +3950,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 ],
                 "motivationSource": [
                     "Your long-term goals"
-                ]
+                ],
+                "territory": "Nester"
             },
             "mbtiMatches": [
                 "INFJ",
@@ -4015,7 +4057,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 ],
                 "motivationSource": [
                     "Your long-term goals"
-                ]
+                ],
+                "territory": "Nester"
             },
             "mbtiMatches": [
                 "ESTJ",
@@ -4121,7 +4164,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 ],
                 "motivationSource": [
                     "Your long-term goals"
-                ]
+                ],
+                "territory": "Nester"
             },
             "mbtiMatches": [
                 "ISTJ",
@@ -4226,7 +4270,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 ],
                 "motivationSource": [
                     "The desire to prove yourself"
-                ]
+                ],
+                "territory": "Wanderer"
             },
             "mbtiMatches": [
                 "ENTP",
@@ -4333,7 +4378,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 ],
                 "motivationSource": [
                     "Your long-term goals"
-                ]
+                ],
+                "territory": "Wanderer"
             },
             "mbtiMatches": [
                 "ENFP",
@@ -4439,7 +4485,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 ],
                 "motivationSource": [
                     "The desire to prove yourself"
-                ]
+                ],
+                "territory": "Wanderer"
             },
             "mbtiMatches": [
                 "ISTP",
@@ -4545,7 +4592,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 ],
                 "motivationSource": [
                     "Your long-term goals"
-                ]
+                ],
+                "territory": "Nester"
             },
             "mbtiMatches": [
                 "INTJ",
@@ -4651,7 +4699,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 ],
                 "motivationSource": [
                     "The desire to prove yourself"
-                ]
+                ],
+                "territory": "Nester"
             },
             "mbtiMatches": [
                 "ISTP",
@@ -4756,7 +4805,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 ],
                 "motivationSource": [
                     "The desire to prove yourself"
-                ]
+                ],
+                "territory": "Wanderer"
             },
             "mbtiMatches": [
                 "ESTP",
@@ -4862,7 +4912,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 ],
                 "motivationSource": [
                     "Your long-term goals"
-                ]
+                ],
+                "territory": "Nester"
             },
             "mbtiMatches": [
                 "INFJ",
@@ -4968,7 +5019,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 ],
                 "motivationSource": [
                     "Your long-term goals"
-                ]
+                ],
+                "territory": "Nester"
             },
             "mbtiMatches": [
                 "ESTJ",
@@ -5073,7 +5125,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 ],
                 "motivationSource": [
                     "Your long-term goals"
-                ]
+                ],
+                "territory": "Wanderer"
             },
             "mbtiMatches": [
                 "ENFP",
@@ -5179,7 +5232,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 ],
                 "motivationSource": [
                     "Your long-term goals"
-                ]
+                ],
+                "territory": "Nester"
             },
             "mbtiMatches": [
                 "ISTJ",
@@ -5286,7 +5340,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 ],
                 "motivationSource": [
                     "Your long-term goals"
-                ]
+                ],
+                "territory": "Nester"
             },
             "mbtiMatches": [
                 "INFJ",
@@ -5392,7 +5447,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 ],
                 "motivationSource": [
                     "Your long-term goals"
-                ]
+                ],
+                "territory": "Nester"
             },
             "mbtiMatches": [
                 "ESTJ",
@@ -5499,7 +5555,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 ],
                 "motivationSource": [
                     "Your long-term goals"
-                ]
+                ],
+                "territory": "Wanderer"
             },
             "mbtiMatches": [
                 "ENTJ",
@@ -5604,7 +5661,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 ],
                 "motivationSource": [
                     "Your long-term goals"
-                ]
+                ],
+                "territory": "Nester"
             },
             "mbtiMatches": [
                 "INTJ",
@@ -5710,7 +5768,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 ],
                 "motivationSource": [
                     "The desire to prove yourself"
-                ]
+                ],
+                "territory": "Wanderer"
             },
             "mbtiMatches": [
                 "ISTP",
@@ -5816,7 +5875,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 ],
                 "motivationSource": [
                     "Your long-term goals"
-                ]
+                ],
+                "territory": "Nester"
             },
             "mbtiMatches": [
                 "INTJ",
@@ -5922,7 +5982,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 ],
                 "motivationSource": [
                     "Your long-term goals"
-                ]
+                ],
+                "territory": "Nester"
             },
             "mbtiMatches": [
                 "ISTJ",
@@ -6028,7 +6089,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 ],
                 "motivationSource": [
                     "Your long-term goals"
-                ]
+                ],
+                "territory": "Nester"
             },
             "mbtiMatches": [
                 "ISTJ",
@@ -6135,7 +6197,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 ],
                 "motivationSource": [
                     "Your long-term goals"
-                ]
+                ],
+                "territory": "Nester"
             },
             "mbtiMatches": [
                 "ENFJ",
@@ -6241,7 +6304,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 ],
                 "motivationSource": [
                     "Your long-term goals"
-                ]
+                ],
+                "territory": "Nester"
             },
             "mbtiMatches": [
                 "ISTJ",
@@ -6347,7 +6411,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 ],
                 "motivationSource": [
                     "Your long-term goals"
-                ]
+                ],
+                "territory": "Nester"
             },
             "mbtiMatches": [
                 "INTJ",
@@ -6453,7 +6518,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 ],
                 "motivationSource": [
                     "Your long-term goals"
-                ]
+                ],
+                "territory": "Nester"
             },
             "mbtiMatches": [
                 "ESTJ",
@@ -6558,7 +6624,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 ],
                 "motivationSource": [
                     "The desire to prove yourself"
-                ]
+                ],
+                "territory": "Nester"
             },
             "mbtiMatches": [
                 "ISTP",
@@ -6664,7 +6731,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 ],
                 "motivationSource": [
                     "Your long-term goals"
-                ]
+                ],
+                "territory": "Nester"
             },
             "mbtiMatches": [
                 "INTJ",
@@ -6770,7 +6838,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 ],
                 "motivationSource": [
                     "Your long-term goals"
-                ]
+                ],
+                "territory": "Wanderer"
             },
             "mbtiMatches": [
                 "ENFJ",
@@ -6875,7 +6944,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 ],
                 "motivationSource": [
                     "The desire to prove yourself"
-                ]
+                ],
+                "territory": "Wanderer"
             },
             "mbtiMatches": [
                 "ENTJ",
@@ -6981,7 +7051,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 ],
                 "motivationSource": [
                     "Your long-term goals"
-                ]
+                ],
+                "territory": "Nester"
             },
             "mbtiMatches": [
                 "ISTJ",
@@ -7089,7 +7160,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 ],
                 "motivationSource": [
                     "Your long-term goals"
-                ]
+                ],
+                "territory": "Nester"
             },
             "mbtiMatches": [
                 "INTJ",
@@ -7194,7 +7266,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 ],
                 "motivationSource": [
                     "The desire to prove yourself"
-                ]
+                ],
+                "territory": "Nester"
             },
             "mbtiMatches": [
                 "ISTP",
@@ -7300,7 +7373,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 ],
                 "motivationSource": [
                     "Your long-term goals"
-                ]
+                ],
+                "territory": "Nester"
             },
             "mbtiMatches": [
                 "INFJ",
@@ -7406,7 +7480,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 ],
                 "motivationSource": [
                     "The desire to prove yourself"
-                ]
+                ],
+                "territory": "Nester"
             },
             "mbtiMatches": [
                 "ISTP",
@@ -7512,7 +7587,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 ],
                 "motivationSource": [
                     "The desire to prove yourself"
-                ]
+                ],
+                "territory": "Nester"
             },
             "mbtiMatches": [
                 "ISTP",
@@ -7618,7 +7694,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 ],
                 "motivationSource": [
                     "Your long-term goals"
-                ]
+                ],
+                "territory": "Nester"
             },
             "mbtiMatches": [
                 "ISTJ",
@@ -7724,7 +7801,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 ],
                 "motivationSource": [
                     "The desire to prove yourself"
-                ]
+                ],
+                "territory": "Wanderer"
             },
             "mbtiMatches": [
                 "ISTP",
@@ -7830,7 +7908,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 ],
                 "motivationSource": [
                     "Your long-term goals"
-                ]
+                ],
+                "territory": "Nester"
             },
             "mbtiMatches": [
                 "INTJ",
@@ -7936,7 +8015,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 ],
                 "motivationSource": [
                     "Your long-term goals"
-                ]
+                ],
+                "territory": "Nester"
             },
             "mbtiMatches": [
                 "ISTJ",
@@ -8044,7 +8124,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 ],
                 "motivationSource": [
                     "Your long-term goals"
-                ]
+                ],
+                "territory": "Wanderer"
             },
             "mbtiMatches": [
                 "ENFJ",
@@ -8150,7 +8231,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 ],
                 "motivationSource": [
                     "Your long-term goals"
-                ]
+                ],
+                "territory": "Wanderer"
             },
             "mbtiMatches": [
                 "INTJ",
@@ -8256,7 +8338,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 ],
                 "motivationSource": [
                     "Your long-term goals"
-                ]
+                ],
+                "territory": "Wanderer"
             },
             "mbtiMatches": [
                 "INFJ",
@@ -8362,7 +8445,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 ],
                 "motivationSource": [
                     "The desire to prove yourself"
-                ]
+                ],
+                "territory": "Wanderer"
             },
             "mbtiMatches": [
                 "ESTP",
@@ -8468,7 +8552,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 ],
                 "motivationSource": [
                     "Your long-term goals"
-                ]
+                ],
+                "territory": "Wanderer"
             },
             "mbtiMatches": [
                 "INTJ",
@@ -8574,7 +8659,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 ],
                 "motivationSource": [
                     "The desire to prove yourself"
-                ]
+                ],
+                "territory": "Wanderer"
             },
             "mbtiMatches": [
                 "ISTP",
@@ -8680,7 +8766,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 ],
                 "motivationSource": [
                     "Your long-term goals"
-                ]
+                ],
+                "territory": "Wanderer"
             },
             "mbtiMatches": [
                 "INTJ",
@@ -8786,7 +8873,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 ],
                 "motivationSource": [
                     "Your long-term goals"
-                ]
+                ],
+                "territory": "Wanderer"
             },
             "mbtiMatches": [
                 "INFJ",
@@ -8892,7 +8980,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 ],
                 "motivationSource": [
                     "The desire to prove yourself"
-                ]
+                ],
+                "territory": "Wanderer"
             },
             "mbtiMatches": [
                 "ISTP",
@@ -8998,7 +9087,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 ],
                 "motivationSource": [
                     "The desire to prove yourself"
-                ]
+                ],
+                "territory": "Wanderer"
             },
             "mbtiMatches": [
                 "ISTP",
@@ -9105,7 +9195,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 ],
                 "motivationSource": [
                     "Your long-term goals"
-                ]
+                ],
+                "territory": "Nester"
             },
             "mbtiMatches": [
                 "ISTJ",
@@ -9213,7 +9304,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 ],
                 "motivationSource": [
                     "Your long-term goals"
-                ]
+                ],
+                "territory": "Nester"
             },
             "mbtiMatches": [
                 "INFJ",
@@ -9318,7 +9410,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 ],
                 "motivationSource": [
                     "Your long-term goals"
-                ]
+                ],
+                "territory": "Wanderer"
             },
             "mbtiMatches": [
                 "ENTJ",
@@ -9424,7 +9517,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 ],
                 "motivationSource": [
                     "Your long-term goals"
-                ]
+                ],
+                "territory": "Nester"
             },
             "mbtiMatches": [
                 "INFJ",
@@ -9530,7 +9624,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 ],
                 "motivationSource": [
                     "The desire to prove yourself"
-                ]
+                ],
+                "territory": "Wanderer"
             },
             "mbtiMatches": [
                 "ISTP",
@@ -9637,7 +9732,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 ],
                 "motivationSource": [
                     "Your long-term goals"
-                ]
+                ],
+                "territory": "Nester"
             },
             "mbtiMatches": [
                 "INTJ",
@@ -9743,7 +9839,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 ],
                 "motivationSource": [
                     "Your long-term goals"
-                ]
+                ],
+                "territory": "Nester"
             },
             "mbtiMatches": [
                 "ISTJ",
@@ -9850,7 +9947,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 ],
                 "motivationSource": [
                     "Your long-term goals"
-                ]
+                ],
+                "territory": "Nester"
             },
             "mbtiMatches": [
                 "INFJ",
@@ -9957,7 +10055,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 ],
                 "motivationSource": [
                     "Your long-term goals"
-                ]
+                ],
+                "territory": "Nester"
             },
             "mbtiMatches": [
                 "INFJ",
@@ -10064,7 +10163,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 ],
                 "motivationSource": [
                     "Your long-term goals"
-                ]
+                ],
+                "territory": "Nester"
             },
             "mbtiMatches": [
                 "ESTJ",
@@ -10169,7 +10269,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 ],
                 "motivationSource": [
                     "Your long-term goals"
-                ]
+                ],
+                "territory": "Wanderer"
             },
             "mbtiMatches": [
                 "ESTJ",
@@ -10274,7 +10375,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 ],
                 "motivationSource": [
                     "Your long-term goals"
-                ]
+                ],
+                "territory": "Nester"
             },
             "mbtiMatches": [
                 "ENFJ",
@@ -10380,7 +10482,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 ],
                 "motivationSource": [
                     "Your long-term goals"
-                ]
+                ],
+                "territory": "Nester"
             },
             "mbtiMatches": [
                 "ISTJ",
@@ -10486,7 +10589,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 ],
                 "motivationSource": [
                     "The desire to prove yourself"
-                ]
+                ],
+                "territory": "Nester"
             },
             "mbtiMatches": [
                 "ISTP",
@@ -10592,7 +10696,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 ],
                 "motivationSource": [
                     "Your long-term goals"
-                ]
+                ],
+                "territory": "Wanderer"
             },
             "mbtiMatches": [
                 "ENTJ",
@@ -10698,7 +10803,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 ],
                 "motivationSource": [
                     "Your long-term goals"
-                ]
+                ],
+                "territory": "Nester"
             },
             "mbtiMatches": [
                 "ENFJ",
@@ -10804,7 +10910,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 ],
                 "motivationSource": [
                     "Your long-term goals"
-                ]
+                ],
+                "territory": "Wanderer"
             },
             "mbtiMatches": [
                 "ENTJ",
@@ -10908,7 +11015,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 ],
                 "motivationSource": [
                     "Your long-term goals"
-                ]
+                ],
+                "territory": "Wanderer"
             },
             "mbtiMatches": [
                 "ENTJ",
@@ -11014,7 +11122,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 ],
                 "motivationSource": [
                     "Your long-term goals"
-                ]
+                ],
+                "territory": "Nester"
             },
             "mbtiMatches": [
                 "INTJ",
@@ -11120,7 +11229,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 ],
                 "motivationSource": [
                     "The desire to prove yourself"
-                ]
+                ],
+                "territory": "Nester"
             },
             "mbtiMatches": [
                 "ISTP",
@@ -11226,7 +11336,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 ],
                 "motivationSource": [
                     "Your long-term goals"
-                ]
+                ],
+                "territory": "Nester"
             },
             "mbtiMatches": [
                 "ISTJ",
@@ -11332,7 +11443,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 ],
                 "motivationSource": [
                     "Your long-term goals"
-                ]
+                ],
+                "territory": "Nester"
             },
             "mbtiMatches": [
                 "ISTJ",
