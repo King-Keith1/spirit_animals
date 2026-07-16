@@ -11617,28 +11617,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 });
             }
     
-            // Create weighted list for random selection
-            let weightedList = [];
-            animalScores.forEach(animal => {
-                // Ensure score is a positive number
-                const scoreCount = Math.max(1, Math.floor(animal.score));
-                for (let i = 0; i < scoreCount; i++) {
-                    weightedList.push({
-                        name: animal.name,
-                        symbolicMeaning: animal.symbolicMeaning,
-                        image: animal.image
-                    });
-                }
-            });
-    
-            // Select a random animal from the weighted list
-            const selectedAnimal = weightedList.length > 0
-                ? weightedList[Math.floor(Math.random() * weightedList.length)]
-                : {
-                    name: "Unknown Spirit Animal",
-                    symbolicMeaning: "Unknown",
-                    image: "images/unknown.webp"
-                };
+            // Select the animal(s) with the strictly highest score — same answers
+            // should always produce the same result. Randomness only comes in
+            // if two or more animals are genuinely tied for first place.
+            const maxScore = Math.max(...animalScores.map(a => a.score));
+            const topAnimals = animalScores.filter(a => a.score === maxScore);
+            const selectedAnimal = topAnimals[Math.floor(Math.random() * topAnimals.length)];
     
             return selectedAnimal;
         }
