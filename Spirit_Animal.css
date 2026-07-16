@@ -136,6 +136,18 @@ body {
     box-shadow: 0 0 10px 2px rgba(221, 182, 98, 0.7);
 }
 
+/* Question panel — replays a subtle entrance every time a new
+   question loads, so moving between questions (and back again)
+   has motion instead of an abrupt swap. */
+#question-panel.panel-enter {
+    animation: panel-in 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes panel-in {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
 /* Question text */
 #question-text {
     font-family: var(--font-display);
@@ -178,14 +190,34 @@ body {
 
 #answer-options button:active {
     transform: scale(0.98);
-    background: var(--moss);
-    border-color: var(--moss);
-    color: var(--parchment);
 }
 
 #answer-options button:focus-visible {
     outline: 2px solid var(--gold);
     outline-offset: 2px;
+}
+
+/* Persistent selected state — this is the actual "chosen" feedback,
+   not the transient :active tap state, so it survives on mobile
+   instead of looking stuck. */
+#answer-options button.selected {
+    background: var(--moss-dark);
+    border-color: var(--moss-dark);
+    color: var(--parchment);
+    animation: option-pop 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+#answer-options button.selected::after {
+    content: "✓";
+    float: right;
+    font-weight: 700;
+    color: var(--gold-bright);
+}
+
+@keyframes option-pop {
+    0% { transform: scale(1); }
+    45% { transform: scale(1.03); }
+    100% { transform: scale(1); }
 }
 
 /* Text / date inputs */
@@ -206,13 +238,51 @@ body {
     border-color: var(--moss);
 }
 
+/* Nav row: Back + Next */
+#quiz-nav {
+    display: flex;
+    gap: 10px;
+}
+
+#back-btn {
+    flex: 0 0 auto;
+    background: transparent;
+    color: var(--ink-soft);
+    border: 1.5px solid rgba(76, 122, 92, 0.3);
+    padding: 13px 18px;
+    border-radius: 12px;
+    font-family: var(--font-body);
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease, opacity 0.2s ease, transform 0.15s ease;
+}
+
+#back-btn:hover:not(:disabled) {
+    background: rgba(76, 122, 92, 0.10);
+}
+
+#back-btn:active:not(:disabled) {
+    transform: scale(0.97);
+}
+
+#back-btn:disabled {
+    opacity: 0;
+    pointer-events: none;
+}
+
+#back-btn:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 2px;
+}
+
 /* Next button */
 #next-btn {
     background: var(--moss-dark);
     color: var(--parchment);
     border: none;
     padding: 13px;
-    width: 100%;
+    flex: 1 1 auto;
     border-radius: 12px;
     font-family: var(--font-body);
     font-size: 15px;
@@ -332,7 +402,14 @@ body {
         animation: none;
         opacity: 1;
     }
+    #question-panel.panel-enter {
+        animation: none;
+    }
+    #answer-options button.selected {
+        animation: none;
+    }
     #answer-options button,
+    #back-btn,
     #next-btn {
         transition: none;
     }

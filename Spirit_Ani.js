@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
     const questions = [
         { text: "What is your name?", type: "text", key: "name" },
+        { text: "Which major animal do you identify with?", type: "choice", key: "animalType", options: ["Bird", "Mammal", "Reptile", "Fish", "Amphibian"] },
         { text: "When it comes to home, are you a wanderer or a nester?", type: "choice", key: "mbti_JP5",
             options: [
                 "A wanderer — always drawn to new territory",
@@ -106,7 +107,6 @@ document.addEventListener("DOMContentLoaded", function () {
         { text: "What does your ideal vacation look like?", type: "choice", key: "vacation", options: ["Relaxing in nature or at home", "Exciting adventures and exploring", "Socializing at parties and events"] },
         { text: "Most important objective?", type: "choice", key: "objective", options: ["Fame", "Wealth", "Love", "Peace"] },
         { text: "Your ambition?", type: "choice", key: "ambition", options: ["Fulfill dreams", "Enjoy life", "Be a leader in major projects"] },
-        { text: "Which major animal do you identify with?", type: "choice", key: "animalType", options: ["Bird", "Mammal", "Reptile", "Fish", "Amphibian"] },
         { text: "Which superpower would you choose?", type: "choice", key: "superpower", options: ["Super strength", "Super speed", "Flight", "X-ray vision", "Breathe underwater"] },
         { text: "Which element do you feel connected to?", type: "choice", key: "element", options: ["Fire", "Water", "Wind", "Earth"] },
         { text: "How do you handle conflict?", type: "choice", key: "conflictHandling", options: ["Avoid it", "Face it head-on", "Try to mediate", "Stay silent but hold a grudge"] },
@@ -120,13 +120,30 @@ document.addEventListener("DOMContentLoaded", function () {
         const questionText = document.getElementById("question-text");
         const answerOptions = document.getElementById("answer-options");
         const nextBtn = document.getElementById("next-btn");
+        const backBtn = document.getElementById("back-btn");
         const progressBarFill = document.getElementById("progress-bar-fill");
-    
+        const questionPanel = document.getElementById("question-panel");
+
+        function highlightSelected(selectedButton) {
+            answerOptions.querySelectorAll("button").forEach(b => b.classList.remove("selected"));
+            selectedButton.classList.add("selected");
+        }
+
+        function playEnterAnimation() {
+            if (!questionPanel) return;
+            questionPanel.classList.remove("panel-enter");
+            void questionPanel.offsetWidth; // force reflow so the animation can restart
+            questionPanel.classList.add("panel-enter");
+        }
+
         function loadQuestion() {
             const question = questions[currentQuestionIndex];
             questionText.textContent = question.text;
             answerOptions.innerHTML = "";
             nextBtn.disabled = true;
+            backBtn.disabled = currentQuestionIndex === 0;
+
+            const priorChoice = userResponses["_selectedOption_" + question.key];
 
             if (progressBarFill) {
                 const percent = Math.round((currentQuestionIndex / questions.length) * 100);
@@ -136,6 +153,10 @@ document.addEventListener("DOMContentLoaded", function () {
             if (question.type === "text" || question.type === "date" || question.type === "number") {
                 const input = document.createElement("input");
                 input.type = question.type;
+                if (userResponses[question.key] !== undefined) {
+                    input.value = userResponses[question.key];
+                    nextBtn.disabled = input.value === "";
+                }
                 input.addEventListener("input", () => {
                     userResponses[question.key] = input.value;
                     nextBtn.disabled = input.value === "";
@@ -145,8 +166,14 @@ document.addEventListener("DOMContentLoaded", function () {
                 ["YES", "NO"].forEach(choice => {
                     const button = document.createElement("button");
                     button.textContent = choice;
+                    if (priorChoice === choice) {
+                        button.classList.add("selected");
+                        nextBtn.disabled = false;
+                    }
                     button.addEventListener("click", () => {
                         userResponses[question.key] = choice === "YES";
+                        userResponses["_selectedOption_" + question.key] = choice;
+                        highlightSelected(button);
                         nextBtn.disabled = false;
                     });
                     answerOptions.appendChild(button);
@@ -155,17 +182,25 @@ document.addEventListener("DOMContentLoaded", function () {
                 question.options.forEach(choice => {
                     const button = document.createElement("button");
                     button.textContent = choice;
+                    if (priorChoice === choice) {
+                        button.classList.add("selected");
+                        nextBtn.disabled = false;
+                    }
                     button.addEventListener("click", () => {
                         if (question.mapKeys && question.mapKeys[choice]) {
                             Object.assign(userResponses, question.mapKeys[choice]);
                         } else {
                             userResponses[question.key] = choice;
                         }
+                        userResponses["_selectedOption_" + question.key] = choice;
+                        highlightSelected(button);
                         nextBtn.disabled = false;
                     });
                     answerOptions.appendChild(button);
                 });
             }
+
+            playEnterAnimation();
         }
     
         const mbtiDescriptions = {
@@ -221,6 +256,13 @@ document.addEventListener("DOMContentLoaded", function () {
             }
             return matches;
         }
+
+        backBtn.addEventListener("click", () => {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                loadQuestion();
+            }
+        });
 
         nextBtn.addEventListener("click", () => {
             currentQuestionIndex++;
@@ -11521,6 +11563,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 for (let key in userResponses) {
                     if (key === "birthDate" || key === "zodiac" || key === "generation") continue;
                     if (key.startsWith("mbti_") || key === "mbtiType") continue;
+                    if (key.startsWith("_selectedOption_")) continue;
     
                     const userResponse = userResponses[key];
                     const animalAttribute = animal.attributes[key];
